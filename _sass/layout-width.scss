@@ -1,14 +1,18 @@
-/* ==== 900px でストップ（lg / xl どちらでも効く） ==== */
-[class^="container-"] {
+.col-lg-8.mx-auto {
     max-width: 900px !important;
+    /* ←好きな上限 */
     width: 100% !important;
-    margin: 0 auto !important; }
+    /* グリッドの 66.7% を上書き */
+    flex: 0 0 100% !important;
+    /* col-◯ の flex-basis も打ち消す */
+    margin-left: auto !important;
+    /* 中央寄せ */
+    margin-right: auto !important;
+}
 
-/* 画面幅 910px 未満は全幅でOKなら */
+/* スマホ〜タブレットでは全幅で OK なら */
 @media (max-width: 910px) {
-
-    [class^="container-"] {
-            max-width: 900px !important;
-            width: 100% !important;
-            margin: 0 auto !important;     }
+    .col-lg-8.mx-auto {
+        max-width: 100% !important;
+    }
 }
