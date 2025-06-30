@@ -1,5 +1,5 @@
 featured:
-  - id: pino2025        # ←ユニーク ID（任意）
+  - pino2025        # ←ユニーク ID（任意）
 index:
   - id: pino2025
     authors: 'Sakuya Ota*, Qing Yu*, Kent Fujiwara, Satoshi Ikehata, Ikuro Sato'
