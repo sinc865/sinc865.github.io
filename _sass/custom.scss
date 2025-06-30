@@ -36,13 +36,15 @@ ul.list-unstyled li em {
   font-style: italic;
 }
 
-body::before {
-  content: "★CSS LOADED★";
-  position: fixed;
-  top: 8px;
-  left: 8px;
-  background: crimson;
-  color: #fff;
-  padding: 4px 6px;
-  z-index: 9999;
+.col-lg-8.mx-auto,
+[class^="container-"],
+.container,
+.container-fluid {
+  max-width: 900px !important;
+  width: 100% !important;
+  /* Bootstrap が付ける固定幅をゼロに */
+  flex: 0 0 100% !important;
+  /* col-* の flex-basis を打ち消す */
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
