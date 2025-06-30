@@ -22,6 +22,7 @@ body a {
 
   /* ★ここを追加★ */
   align-self: flex-start; // 画像だけ個別に上揃え
+  border: none !important;
 }
 
 ul.list-unstyled li strong {
