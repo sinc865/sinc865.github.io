@@ -35,19 +35,3 @@ ul.list-unstyled li strong {
 ul.list-unstyled li em {
   font-style: italic;
 }
-
-
-.container-lg {
-  max-width: 900px !important;
-  /* ←数値はお好みで */
-  width: 100% !important;
-  /* Bootstrap の固定 width を打ち消す */
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-@media (max-width: 910px) {
-  .container-lg {
-    max-width: 100% !important;
-  }
-}
