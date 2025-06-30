@@ -1,0 +1,11 @@
+/* ❶ 既存テーマの wrapper 幅を広げる */
+.wrapper {
+    max-width: 900px !important; // ←お好みで 800~1000 くらい
+}
+
+/* ❷ 画面幅が小さいときはフル幅に戻す（レスポンシブ） */
+@media (max-width: 991px) {
+    .wrapper {
+        max-width: 100% !important;
+    }
+}
