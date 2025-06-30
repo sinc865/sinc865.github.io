@@ -1,17 +1,14 @@
 /* ==== 900px でストップ（lg / xl どちらでも効く） ==== */
-.container-lg,
-.container-xl {
+[class^="container-"] {
     max-width: 900px !important;
     width: 100% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
+    margin: 0 auto !important; }
 
 /* 画面幅 910px 未満は全幅でOKなら */
 @media (max-width: 910px) {
 
-    .container-lg,
-    .container-xl {
-        max-width: 100% !important;
-    }
+    [class^="container-"] {
+            max-width: 900px !important;
+            width: 100% !important;
+            margin: 0 auto !important;     }
 }
