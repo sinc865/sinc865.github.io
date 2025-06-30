@@ -1,4 +1,4 @@
-<div class="row g-5 mb-5">
+<!-- <div class="row g-5 mb-5">
   <div>
     <h3 class="fw-bold border-bottom pb-3 mb-5">Publications</h3>
     {% if page.title == "Home" %}
@@ -10,5 +10,34 @@
         <p><a href="{{ item.url }}">{{ item.name }}</a></p>
       {% endfor %}
     {% endif %}
+  </div>
+</div> -->
+<div class="row g-5 mb-5">
+  <div>
+    <h3 class="fw-bold border-bottom pb-3 mb-4">Publications</h3>
+
+    <!-- {%- comment -%}
+    Home なら featured（＝ID 配列）、それ以外は index（＝本体）を採用
+    {%- endcomment -%} -->
+    {% assign pubs = page.title == "Home"
+    ? site.data.publications.featured
+    : site.data.publications.index %}
+
+    <ul class="list-unstyled">
+      {%- for ref in pubs %}
+      {%- capture pid %}{{ ref.id | default: ref }}{% endcapture %}
+      {%- assign p = site.data.publications.index | where: "id", pid | first %}
+
+      <li class="mb-3">
+        {{ p.authors }}
+        {% if p.note %}<span class="text-muted">({{ p.note }})</span>{% endif %}<br>
+        <strong>{{ p.title }}</strong><br>
+        <em>{{ p.venue }}, {{ p.year }}</em><br>
+        {% if p.website %}<a href="{{ p.website }}">Website</a>{% endif %}
+        {% if p.paper %}{% if p.website %} | {% endif %}<a href="{{ p.paper }}">Paper</a>{% endif %}
+        {% if p.code %}{% if p.website or p.paper %} | {% endif %}<a href="{{ p.code }}">Code</a>{% endif %}
+      </li>
+      {%- endfor %}
+    </ul>
   </div>
 </div>
