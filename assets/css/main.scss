@@ -1,7 +1,7 @@
---- ---
-/* ここから既存の SCSS が続く */
-@import "main";
-
+---
+/* ←必ず改行を挟む（YAMLフロントマター） */
+---
+/* ここに SCSS を書く。main.scss 自身は import しない */
 $backgroundColor: #ffffff;
 $bodyColor: #000000;
 $bodyFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -14,16 +14,20 @@ body {
 }
 
 body a {
-    color: $linkColor
+    color: $linkColor;
 }
 
 /* Publication thumbnails – 横幅固定で小さめ */
 .pub-thumb {
-    width: 100px; // ←ここを好きなサイズに変える
-    height: auto; // 縦横比を維持
-    object-fit: contain; // 画像全体を収める（切り抜きたくない場合）
-    margin-right: 0.75rem; // (= Bootstrap の me-3 相当)
-    flex-shrink: 0; // テキスト幅が狭くても縮まないよう固定
+    width: 100px;
+    /* ←ここで横幅だけ統一 */
+    height: auto;
+    /* 縦横比維持 */
+    object-fit: contain;
+    /* 切り抜かない */
+    margin-right: 0.75rem;
+    /* (= Bootstrap の me-3) */
+    flex-shrink: 0;
     border: 1px solid #dee2e6;
     border-radius: 4px;
 }
