@@ -10,3 +10,4 @@ index:
     website: 'https://example.com'
     paper: '/publications/ICCV2025_PINO.pdf'
     code: 'https://github.com/yourname/pino'
+    thumb:   '/assets/img/thumb/pino_thumb.png'

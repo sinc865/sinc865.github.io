@@ -1,4 +1,27 @@
----
----
-
 @import "main";
+
+ul.list-unstyled li strong {
+    font-weight: 600;
+}
+
+ul.list-unstyled li em {
+    font-style: italic;
+}
+
+/* publication thumbnails */
+.pub-thumb {
+    width: 110px;
+    /* ここだけ調整すれば全体の大きさを一括変更可能 */
+    height: auto;
+    border: 1px solid #dee2e6;
+    /* 薄い枠線でカード感を出す */
+    border-radius: 4px;
+}
+
+.publication-list li strong {
+    font-weight: 600;
+}
+
+.publication-list li em {
+    font-style: italic;
+}
