@@ -1,18 +1,13 @@
-.col-lg-8.mx-auto {
+/* 最外殻のグリッドを全部一網打尽にする */
+.col-lg-8.mx-auto,
+[class^="container-"],
+.container,
+.container-fluid {
     max-width: 900px !important;
-    /* ←好きな上限 */
     width: 100% !important;
-    /* グリッドの 66.7% を上書き */
+    /* Bootstrap が付ける固定幅をゼロに */
     flex: 0 0 100% !important;
-    /* col-◯ の flex-basis も打ち消す */
+    /* col-* の flex-basis を打ち消す */
     margin-left: auto !important;
-    /* 中央寄せ */
     margin-right: auto !important;
-}
-
-/* スマホ〜タブレットでは全幅で OK なら */
-@media (max-width: 910px) {
-    .col-lg-8.mx-auto {
-        max-width: 100% !important;
-    }
 }

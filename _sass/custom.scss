@@ -35,3 +35,17 @@ ul.list-unstyled li strong {
 ul.list-unstyled li em {
   font-style: italic;
 }
+
+/* 最外殻のグリッドを全部一網打尽にする */
+.col-lg-8.mx-auto,
+[class^="container-"],
+.container,
+.container-fluid {
+  max-width: 900px !important;
+  width: 100% !important;
+  /* Bootstrap が付ける固定幅をゼロに */
+  flex: 0 0 100% !important;
+  /* col-* の flex-basis を打ち消す */
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
