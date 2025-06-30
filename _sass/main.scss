@@ -1,33 +1,33 @@
-$backgroundColor: #ffffff;
-$bodyColor: #000000;
-$bodyFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-$linkColor: #212529 !important;
+// $backgroundColor: #ffffff;
+// $bodyColor: #000000;
+// $bodyFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+// $linkColor: #212529 !important;
 
-body {
-  background: $backgroundColor;
-  color: $bodyColor;
-  font-family: $bodyFont;
-}
+// body {
+//   background: $backgroundColor;
+//   color: $bodyColor;
+//   font-family: $bodyFont;
+// }
 
-body a {
-  color: $linkColor
-}
+// body a {
+//   color: $linkColor
+// }
 
-/* Publication thumbnails – 横幅固定で小さめ */
-.pub-thumb {
-  width: 100px; // ←ここを好きなサイズに変える
-  height: auto; // 縦横比を維持
-  object-fit: contain; // 画像全体を収める（切り抜きたくない場合）
-  margin-right: 0.75rem; // (= Bootstrap の me-3 相当)
-  flex-shrink: 0; // テキスト幅が狭くても縮まないよう固定
-  border: 1px solid #dee2e6;
-  border-radius: 4px;
-}
+// /* Publication thumbnails – 横幅固定で小さめ */
+// .pub-thumb {
+//   width: 100px; // ←ここを好きなサイズに変える
+//   height: auto; // 縦横比を維持
+//   object-fit: contain; // 画像全体を収める（切り抜きたくない場合）
+//   margin-right: 0.75rem; // (= Bootstrap の me-3 相当)
+//   flex-shrink: 0; // テキスト幅が狭くても縮まないよう固定
+//   border: 1px solid #dee2e6;
+//   border-radius: 4px;
+// }
 
-ul.list-unstyled li strong {
-  font-weight: 600;
-}
+// ul.list-unstyled li strong {
+//   font-weight: 600;
+// }
 
-ul.list-unstyled li em {
-  font-style: italic;
-}
+// ul.list-unstyled li em {
+//   font-style: italic;
+// }
