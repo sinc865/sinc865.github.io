@@ -19,10 +19,12 @@ body a {
   object-fit: contain;
   margin-right: .75rem;
   flex-shrink: 0;
+  vertical-align: top;
 
-  /* ★ここを追加★ */
-  align-self: flex-start; // 画像だけ個別に上揃え
-  border: none !important;
+  align-self: flex-start;
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 ul.list-unstyled li strong {
