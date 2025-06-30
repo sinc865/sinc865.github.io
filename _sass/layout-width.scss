@@ -1,7 +1,12 @@
 /* ❶ 既存テーマの wrapper 幅を広げる */
-.wrapper {
-    max-width: 900px !important; // ←お好みで 800~1000 くらい
+// .wrapper {
+//     max-width: 900px !important; // ←お好みで 800~1000 くらい
+// }
+.markdown-body {
+    max-width: 900px !important;
+    margin: 0 auto; 
 }
+
 
 /* ❷ 画面幅が小さいときはフル幅に戻す（レスポンシブ） */
 @media (max-width: 910px) {
