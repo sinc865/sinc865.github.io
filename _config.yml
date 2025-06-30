@@ -2,4 +2,3 @@ url: "https://sinc865.github.io" # the base hostname & protocol for your site, e
 baseurl: "" # the subpath of your site, e.g. /blog
 title: "Sakuya Ota" # the name of your site, e.g. ACME Corp.
 description: ""
-menu:[]
