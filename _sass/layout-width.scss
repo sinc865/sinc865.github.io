@@ -1,16 +1,14 @@
-/* ❶ 既存テーマの wrapper 幅を広げる */
-// .wrapper {
-//     max-width: 900px !important; // ←お好みで 800~1000 くらい
-// }
-.markdown-body {
+.container-lg {
     max-width: 900px !important;
-    margin: 0 auto; 
+    /* ←数値はお好みで */
+    width: 100% !important;
+    /* Bootstrap の固定 width を打ち消す */
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
-
-/* ❷ 画面幅が小さいときはフル幅に戻す（レスポンシブ） */
 @media (max-width: 910px) {
-    .wrapper {
+    .container-lg {
         max-width: 100% !important;
     }
 }
