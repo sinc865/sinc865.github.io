@@ -19,9 +19,9 @@
         {% endif %}
 
         <div>
+          <strong>{{ p.title }}</strong><br>
           {{ p.authors }}
           {% if p.note %}<span class="text-muted">({{ p.note }})</span>{% endif %}<br>
-          <strong>{{ p.title }}</strong><br>
           <em>{{ p.venue }}, {{ p.year }}</em><br>
           {% if p.website %}<a href="{{ p.website }}">Project Page</a>{% endif %}
           {% if p.paper %}{% if p.website %} / {% endif %}<a href="{{ p.paper }}">Paper</a>{% endif %}
