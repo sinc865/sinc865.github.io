@@ -13,19 +13,15 @@ body a {
   color: $linkColor;
 }
 
-/* Publication thumbnails – 横幅固定で小さめ */
 .pub-thumb {
-  width: 100px;
-  /* ←ここで横幅だけ統一 */
+  width: 120px;
   height: auto;
-  /* 縦横比維持 */
   object-fit: contain;
-  /* 切り抜かない */
-  margin-right: 0.75rem;
-  /* (= Bootstrap の me-3) */
+  margin-right: .75rem;
   flex-shrink: 0;
-  border: 1px solid #dee2e6;
-  border-radius: 4px;
+
+  /* ★ここを追加★ */
+  align-self: flex-start; // 画像だけ個別に上揃え
 }
 
 ul.list-unstyled li strong {
