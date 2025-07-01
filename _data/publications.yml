@@ -7,7 +7,7 @@ index:
     title: 'PINO: Person-Interaction Noise Optimization for Long-Duration and Customizable Motion Generation of Arbitrary-Sized Groups'
     venue: 'IEEE/CVF International Conference on Computer Vision (ICCV)'
     year: 2025
-    website: 'https://example.com'
+    website: '/pino/'
     paper: '/publications/ICCV2025_PINO.pdf'
     code: 'https://github.com/yourname/pino'
     thumb:   '/assets/img/thumb/pino_thumb.png'
