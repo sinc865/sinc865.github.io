@@ -3,6 +3,4 @@ layout: home
 title: "Sakuya Ota"
 ---
 
-This theme allows an academic person to showcase their research interests, publications, research group, curriculum vitae, any courses that they may be teaching, or anything else they may want to put out into the world.
-
-Academics can use this home page to describe their research interests, display their latest publications, or provide an introduction to their research group.
+I am an MS student in the Sato Laboratory, Department of Computer Science, School of Computing, at the Institute of Science Tokyo.
