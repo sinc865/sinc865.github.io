@@ -28,8 +28,8 @@ body {
 }
 
 
-.publication-title {
-}
+
+
 
 .publication-banner {
   max-height: parent;
@@ -48,7 +48,7 @@ body {
 }
 
 .publication-title {
-    font-family: 'Google Sans', sans-serif;
+    font-family: 'Google Sans', sans-serif;    
 }
 
 .publication-authors {
@@ -57,8 +57,10 @@ body {
 
 .publication-venue {
     color: #555;
-    width: fit-content;
     font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    margin:0 0 20px 0;
 }
 
 .publication-awards {
@@ -117,8 +119,9 @@ body {
 .results-carousel .item {
   margin: 5px;
   overflow: hidden;
+  border: None;
   border: 1px solid #bbb;
-  border-radius: 10px;
+  border-radius: 36.5px;
   padding: 0;
   font-size: 0;
 }
@@ -126,7 +129,15 @@ body {
 .results-carousel video {
   margin: 0;
 }
-
+.results-carousel video {
+  width: 100%;
+  height: auto;
+  /* 念のため */
+  /* aspect-ratio: 1 / 1; */
+  /* ここで縦横比を固定 */
+  /* object-fit: cover; */
+  /* 足りない部分はトリミング、余白ナシにしたいなら */
+}
 
 .interpolation-panel {
   background: #f5f5f5;
@@ -154,4 +165,245 @@ body {
 }
 #interpolation-image-wrapper img {
   border-radius: 5px;
+}
+
+
+/*────────────────  基本フォント ────────────────*/
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+/*────────────────  共通リンクなど ────────────────*/
+.footer .icon-link {
+  font-size: 25px;
+  color: #000;
+}
+
+.link-block a {
+  margin: 5px 0;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+/*────────────────  ヒーロー見出し ────────────────*/
+.teaser .hero-body {
+  padding: 0 0 3rem;
+}
+
+.teaser,
+.publication-title,
+.publication-authors {
+  font-family: 'Google Sans', sans-serif;
+}
+
+/*────────────────  論文動画埋め込み ────────────────*/
+.publication-video {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  border-radius: 10px;
+  
+}
+
+.publication-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+}
+
+/*────────────────  ★ 研究結果カルーセル ★ ────────────────*/
+/* アウター（全体） */
+#results-carousel {
+  max-width: 500px;
+  /* デスクトップでの最大横幅 */
+  margin: auto;
+  /* 画面中央に配置            */
+  overflow:visible
+  /* 左右にスライドをはみ出させる */
+  
+}
+
+/* width 指定を外す。padding も tiny-slider に任せる */
+#results-carousel .item {
+  width: auto !important;
+  padding: 0;
+  border: None;
+}
+
+
+
+/* ★動画共通スタイル */
+#results-carousel video {
+  width: 500px;
+  height: auto;
+  aspect-ratio: 1;
+  /* 縦横比を固定（自由なら削除可）*/
+  border-radius: 30px;
+  object-fit: cover;
+  /* 「見切れても良い」なら cover／全景なら contain */
+  box-shadow: None;
+  transition: transform .3s;
+}
+
+/* Tiny-Slider が生成するラッパーにも溢れ許可 */
+#results-carousel .tns-outer {
+  overflow: visible !important;
+}
+
+/*───────────────  スマホ (≤768px)  ───────────────*/
+@media screen and (max-width:768px) {
+  #results-carousel {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  #results-carousel .item {
+    width: 100% !important;
+    padding: 0;
+  }
+}
+
+/*────────────────  補間パネルなど（既存） ────────────────*/
+.interpolation-panel {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.interpolation-panel .interpolation-image {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+#interpolation-image-wrapper {
+  width: 100%;
+}
+
+#interpolation-image-wrapper img {
+  border-radius: 5px;
+}
+
+/* 必ず “#results-carousel” より **あと** に書く */
+#results-carousel{ position:relative; }  /* 念のため */
+
+#results-carousel .carousel-nav-left,
+#results-carousel .carousel-nav-right{
+  width:48px; height:48px;              /* ボタンの直径 */
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,.15);
+  display:flex; align-items:center; justify-content:center;
+  z-index:10;                           /* 動画より前面に */
+  transition:transform .2s;
+}
+
+/* ===== PC ===== */
+#results-carousel .carousel-nav-left {  left:-60px; }  /* ←お好みで数値調整 */
+#results-carousel .carousel-nav-right{ right:-60px; }
+
+/* ホバー時に少し浮かせる（任意）*/
+#results-carousel .carousel-nav-left:hover,
+#results-carousel .carousel-nav-right:hover{
+  transform:translateY(-50%) scale(1.05);
+}
+
+/* ===== スマホは item 内側に戻す ===== */
+@media(max-width:768px){
+  #results-carousel .carousel-nav-left {  left:10px;  }
+  #results-carousel .carousel-nav-right{ right:10px; }
+}
+
+
+/* 必ず “#results-carousel” より **あと** に書く */
+#results-carousel{ position:relative; }  /* 念のため */
+
+#results-carousel .carousel-nav-left,
+#results-carousel .carousel-nav-right{
+  width:48px; height:48px;              /* ボタンの直径 */
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,.15);
+  display:flex; align-items:center; justify-content:center;
+  z-index:10;                           /* 動画より前面に */
+  transition:transform .2s;
+}
+
+/* ===== PC ===== */
+#results-carousel .carousel-nav-left {  left:-60px; }  /* ←お好みで数値調整 */
+#results-carousel .carousel-nav-right{ right:-60px; }
+
+/* ホバー時に少し浮かせる（任意）*/
+#results-carousel .carousel-nav-left:hover,
+#results-carousel .carousel-nav-right:hover{
+  transform:translateY(-50%) scale(1.05);
+}
+
+/* ===== スマホは item 内側に戻す ===== */
+@media(max-width:768px){
+  #results-carousel .carousel-nav-left {  left:10px;  }
+  #results-carousel .carousel-nav-right{ right:10px; }
+}
+
+
+/* -------------------------------------------------
+   ❶ 親カルーセルを座標系の基準にする（まだなら追加）
+-------------------------------------------------- */
+#results-carousel {
+  position: relative;
+}
+
+/* -------------------------------------------------
+   ❷ ナビゲーション丸ボタンを外側へ移動
+      ※!important でライブラリ側より優先
+-------------------------------------------------- */
+.slider-navigation-previous,
+.slider-navigation-next {
+  position: absolute !important;
+  top: 50% !important;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #fff;
+  /* 見た目はお好みで */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* transform: translateY(-50%); */
+  z-index: 50;
+  /* 動画より前面に */
+}
+
+/* ---- PC（≥769px）ではスライドの外側へ 60px 押し出す ---- */
+@media (min-width:769px) {
+  .slider-navigation-previous {
+    left: -60px !important;
+    right: auto !important;
+  }
+
+  .slider-navigation-next {
+    right: -60px !important;
+    left: auto !important;
+  }
+}
+
+/* ---- スマホは内側に戻し、タップしやすく ---- */
+@media (max-width:768px) {
+  .slider-navigation-previous {
+    left: 10px !important;
+  }
+
+  .slider-navigation-next {
+    right: 10px !important;
+  }
 }
