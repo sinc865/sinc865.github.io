@@ -42,7 +42,7 @@ $(document).ready(function () {
       slidesToShow: 1,
       slidesToScroll: 1,
       centerMode: true,        // ← v3 は center ではなく centerMode
-      edgePadding: 80,      // ← 左右に “見切れ” を 80px ずつ
+      edgePadding: 0,      // ← 左右に “見切れ” を 80px ずつ
       gutter: 20,      // ← スライド同士の隙間を 20px
       loop: itemCount > 1,
       autoplay: false,
@@ -51,7 +51,7 @@ $(document).ready(function () {
       breakpoints: [{
         changePoint: 768,       // 768px 以下
         edgePadding: 0,
-        gutter: 0,    
+        gutter: 20,    
         slidesToShow: 1,
         slidesToScroll: 1,
         centerMode: false
@@ -74,4 +74,32 @@ $(document).ready(function () {
 
   /* ▼ Bulma-Slider（スライダー UI） */
   bulmaSlider.attach();
+
+  /* ▼ Results セクション用カルーセル ---------------------------- */
+  const resultsEl = document.querySelector('#results-carousel-ex');
+  if (resultsEl) {
+    const n = resultsEl.querySelectorAll('.item').length;
+
+    const resultsOpts = {
+      slidesToShow: 2,   // PC は 3 枚
+      slidesToScroll: 1,
+      centerMode: false,
+      gutter: 20,
+      loop: n > 1,
+      autoplay: false,
+      breakpoints: [{
+        changePoint: 768,             // 768px 以下はスマホ扱い
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        gutter: 10,
+        centerMode: false
+      }]
+    };
+
+    bulmaCarousel.attach(resultsEl, resultsOpts);
+  }
+
+
 });
+
+
