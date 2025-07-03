@@ -1,7 +1,13 @@
+/*────────────────  基本フォントとリンク  ────────────────*/
 body {
-  font-family: 'Noto Sans', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
 }
 
+.publication-title,
+.publication-authors,
+.teaser {
+    font-family: 'Google Sans', sans-serif;
+}
 
 .footer .icon-link {
     font-size: 25px;
@@ -9,96 +15,41 @@ body {
 }
 
 .link-block a {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 5px 0;
 }
 
 .dnerf {
-  font-variant: small-caps;
+    font-variant: small-caps;
 }
 
-
-.teaser .hero-body {
-  padding-top: 0;
-  padding-bottom: 3rem;
-}
-
-.teaser {
-  font-family: 'Google Sans', sans-serif;
-}
-
-
-
-
-
-.publication-banner {
-  max-height: parent;
-
-}
-
-.publication-banner video {
-  position: relative;
-  left: auto;
-  top: auto;
-  transform: none;
-  object-fit: fit;
-}
-
-.publication-header .hero-body {
-}
-
-.publication-title {
-    font-family: 'Google Sans', sans-serif;    
-}
-
-.publication-authors {
-    font-family: 'Google Sans', sans-serif;
-}
-
+/*────────────────  HERO & メタ情報  ────────────────*/
 .publication-venue {
     color: #555;
     font-weight: bold;
     font-size: 30px;
     text-align: center;
-    margin:0 0 20px 0;
+    margin: 0 0 20px;
 }
 
-.publication-awards {
-    color: #ff3860;
-    width: fit-content;
-    font-weight: bolder;
+.eql-cntrb {
+    font-size: smaller;
 }
 
-.publication-authors {
+/*────────────────  ティーザーセクション  ────────────────*/
+.teaser .hero-body {
+    padding: 0 0 3rem;
 }
 
-.publication-authors a {
-   color: hsl(204, 86%, 53%) !important;
-}
-
-.publication-authors a:hover {
-    text-decoration: underline;
-}
-
-.author-block {
-  display: inline-block;
-}
-
-.publication-banner img {
-}
-
-.publication-authors {
-  /*color: #4286f4;*/
-}
-
+/*────────────────  抽象・動画埋め込み  ────────────────*/
 .publication-video {
     position: relative;
     width: 100%;
     height: 0;
     padding-bottom: 56.25%;
-
+    /* 16:9 */
     overflow: hidden;
-    border-radius: 0px !important;
+    border-radius: 10px;
+    /* Academic テンプレに合わせて少し角丸 */
 }
 
 .publication-video iframe {
@@ -109,332 +60,127 @@ body {
     height: 100%;
 }
 
-.publication-body img {
+/*────────────────  カルーセル共通  ────────────────*/
+.results-carousel,
+#results-carousel-ex {
+    overflow:hidden;
 }
 
-.results-carousel {
-  overflow: hidden;
-}
-
-.results-carousel .item {
-  margin: 5px;
-  overflow: hidden;
-  border: None;
-  border-radius: 0px;
-  padding: 0;
-  font-size: 16px;
-  text-align: center;
-}
-
-.results-carousel video {
-  margin: 0;
-}
-.results-carousel video {
-  width: 100%;
-  height: auto;
-  /* 念のため */
-  /* aspect-ratio: 1 / 1; */
-  /* ここで縦横比を固定 */
-  /* object-fit: cover; */
-  /* 足りない部分はトリミング、余白ナシにしたいなら */
-}
-
-.interpolation-panel {
-  background: #f5f5f5;
-  border-radius: 10px;
-}
-
-.interpolation-panel .interpolation-image {
-  width: 100%;
-  border-radius: 5px;
-}
-
-.interpolation-video-column {
-}
-
-.interpolation-panel .slider {
-  margin: 0 !important;
-}
-
-.interpolation-panel .slider {
-  margin: 0 !important;
-}
-
-#interpolation-image-wrapper {
-  width: 100%;
-}
-#interpolation-image-wrapper img {
-  border-radius: 5px;
-}
-
-
-/*────────────────  基本フォント ────────────────*/
-body {
-  font-family: 'Noto Sans', sans-serif;
-}
-
-/*────────────────  共通リンクなど ────────────────*/
-.footer .icon-link {
-  font-size: 25px;
-  color: #000;
-}
-
-.link-block a {
-  margin: 5px 0;
-}
-
-.dnerf {
-  font-variant: small-caps;
-}
-
-/*────────────────  ヒーロー見出し ────────────────*/
-.teaser .hero-body {
-  padding: 0 0 3rem;
-}
-
-.teaser,
-.publication-title,
-.publication-authors {
-  font-family: 'Google Sans', sans-serif;
-}
-
-/*────────────────  論文動画埋め込み ────────────────*/
-.publication-video {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 56.25%;
-  overflow: hidden;
-  border-radius: 0px;
-  
-}
-
-.publication-video iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  
-}
-
-/*────────────────  ★ 研究結果カルーセル ★ ────────────────*/
-/* アウター（全体） */
-#results-carousel {
-  max-width: 500px;
-  /* デスクトップでの最大横幅 */
-  margin: auto;
-  /* 画面中央に配置            */
-  overflow:visible;
-}
-
-/* width 指定を外す。padding も tiny-slider に任せる */
-#results-carousel .item {
-  width: auto !important;
-  padding: 0;
-  border: None;
-}
-
-
-
-/* ★動画共通スタイル */
-#results-carousel video {
-  width: 500px;
-  height: auto;
-  aspect-ratio: 1;
-  /* 縦横比を固定（自由なら削除可）*/
-  border-radius: 25px;
-  object-fit: cover;
-  /* 「見切れても良い」なら cover／全景なら contain */
-  box-shadow:None;
-  transition: transform .3s;
-}
-
-/* Tiny-Slider が生成するラッパーにも溢れ許可 */
-#results-carousel .tns-outer {
-  overflow: visible !important;
-}
-
-/*───────────────  スマホ (≤768px)  ───────────────*/
-@media screen and (max-width:768px) {
-  #results-carousel {
-    max-width: 100%;
-    overflow: hidden;
-  }
-
-  #results-carousel .item {
-    width: 100% !important;
+.results-carousel .item,
+#results-carousel-ex .item {
+    margin: 5px;
     padding: 0;
-  }
+    font-size: 0;
+    /* Bulma-carousel の余白抑制 */
 }
 
-/*────────────────  補間パネルなど（既存） ────────────────*/
-.interpolation-panel {
-  background: #f5f5f5;
-  border-radius: 10px;
+.results-carousel video,
+#results-carousel-ex video {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
 }
 
-.interpolation-panel .interpolation-image {
-  width: 100%;
-  border-radius: 5px;
-}
-
-.interpolation-panel .slider {
-  margin: 0 !important;
-}
-
-#interpolation-image-wrapper {
-  width: 100%;
-}
-
-#interpolation-image-wrapper img {
-  border-radius: 5px;
-}
-
-
-
-
-
-/* -------------------------------------------------
-   ❶ 親カルーセルを座標系の基準にする（まだなら追加）
--------------------------------------------------- */
-#results-carousel {
-  position: relative;
-}
-
-/* -------------------------------------------------
-   ❷ ナビゲーション丸ボタンを外側へ移動
-      ※!important でライブラリ側より優先
--------------------------------------------------- */
+/* ── Bulma-carousel ナビゲーション丸ボタン（左右）── */
+.carousel-nav-left,
+.carousel-nav-right,
 .slider-navigation-previous,
 .slider-navigation-next {
-  position: absolute !important;
-  top: 50% !important;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #fff;
-  /* 見た目はお好みで */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* transform: translateY(-50%); */
-  z-index: 50;
-  /* 動画より前面に */
+    position: absolute !important;
+    top: 50% !important;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 6px rgb(255, 255, 255);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* ---- PC（≥769px）ではスライドの外側へ 60px 押し出す ---- */
-@media (min-width:769px) {
-  .slider-navigation-previous {
-    left: -60px !important;
-    right: auto !important;
-  }
 
-  .slider-navigation-next {
-    right: -60px !important;
-    left: auto !important;
-  }
-}
 
-/* ---- スマホは内側に戻し、タップしやすく ---- */
+/* モバイルは内側へ */
 @media (max-width:768px) {
-  .slider-navigation-previous {
-    left: 10px !important;
-  }
 
-  .slider-navigation-next {
-    right: 10px !important;
-  }
+    .carousel-nav-left,
+    .slider-navigation-previous {
+        left: 10px !important;
+    }
+
+    .carousel-nav-right,
+    .slider-navigation-next {
+        right: 10px !important;
+    }
 }
 
-#results-carousel-ex video {
-  border-radius: 20px;
-}
-
+/*────────────────  マルチパーソン動画グリッド  ────────────────*/
 #multi-person video {
-  width: 100%;
-  max-width:400px;
-  height: auto;
-  border-radius: 10px;
-  /* 角丸調整はお好みで */
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
 }
 
 section figcaption {
-  font-size: 1.1rem;
-  line-height: 1.4;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin-top: .5rem;
+}
+
+/*────────────────  その他小要素  ────────────────*/
+.slider-pagination .slider-page {
+    background: #000;
+}
+
+.publication-authors a {
+    color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+    text-decoration: underline;
+}
+
+/* 背景グレーの補間パネルなど（必要なら残す） */
+.interpolation-panel {
+    background: #f5f5f5;
+    border-radius: 10px;
+}
+
+.interpolation-panel .interpolation-image,
+#interpolation-image-wrapper img {
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* 追加：ティーザー（最初のカルーセル）の動画は最大400px */
+#teaser-carousel video {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    margin: 0 auto;
 }
 
 
-/* 共通スタイル */
-#results-carousel .slider-nav-previous,
-#results-carousel .slider-nav-next {
-  position: absolute;
-  top: 50%;
-  width: 48px; height: 48px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,.15);
-  transform: translateY(-50%);
-  z-index: 50;
-}
-
-/* PC は外側へ 60px 押し出す */
-@media (min-width:769px) {
-  #results-carousel .slider-nav-previous { left: -60px; }
-  #results-carousel .slider-nav-next    { right: -60px; }
-}
-
-/* スマホは内側に */
-@media (max-width:768px) {
-  #results-carousel .slider-nav-previous { left: 10px; }
-  #results-carousel .slider-nav-next    { right: 10px; }
-}
-
-/* results-carousel-ex 用の共通スタイル */
-#results-carousel-ex .carousel-nav-left,
-#results-carousel-ex .carousel-nav-right {
-  position: absolute;
-  top: 50%;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
-  transform: translateY(-50%);
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* PC (≥769px) では外側へ押し出す */
-/* @media (min-width: 769px) {
-  #results-carousel-ex .carousel-nav-left {
-    left: -60px;
+/* 念のため：アイテムも中央揃えに */
+#teaser-carousel .item{
+    text-align:center;
   }
 
-  #results-carousel-ex .carousel-nav-right {
-    right: -60px;
-  }
-} */
-
-/* スマホは内側に置く */
-/* @media (max-width: 768px) {
-  #results-carousel-ex .carousel-nav-left {
-    left: 10px;
-  }
-
-  #results-carousel-ex .carousel-nav-right {
-    right: 10px;
-  }
-} */
-
-
-#results-carousel-ex {
-  overflow:visible;
-  /* ← 矢印がクリップされないように */
-  position: relative;
-  /* ← 子の absolute 位置決め用 */
+/* teaser だけを 1 行 1 枚に強制 */
+#teaser-carousel .tns-item {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
 }
 
+
+/* ティーザーカルーセルのアイテム幅を強制的に100%にする（最終修正版） */
+#teaser-carousel .item,
+#teaser-carousel .carousel-item,
+#teaser-carousel .tns-item {
+    flex: 0 0 100% !important;
+    min-width: 100% !important;
+    width: 100% !important;
+}

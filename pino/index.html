@@ -1,525 +1,345 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
+
+  <!-- ✦ Social-media / SEO --------------------------------------------------- -->
   <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    content="PINO generates realistic, customizable multi-person motions by pairing pretrained two-person diffusion with physics-aware noise optimization.">
+  <meta property="og:title" content="PINO: Person-Interaction Noise Optimization" />
+  <meta property="og:description"
+    content="Long-duration &amp; customizable motion generation for arbitrary-sized groups." />
+  <meta property="og:url" content="https://your.domain/PINO/" />
+  <meta property="og:image" content="static/images/og_banner.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:title" content="PINO: Person-Interaction Noise Optimization">
+  <meta name="twitter:description"
+    content="Long-duration &amp; customizable motion generation for arbitrary-sized groups.">
+  <meta name="twitter:image" content="static/images/twitter_banner.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Basic --------------------------------------------------------------- -->
+  <meta name="keywords" content="motion generation, diffusion models, multi-person interaction, character animation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PINO: Person-Interaction Noise Optimization for Long-Duration and Customizable Motion Generation of Arbitrary-Sized
-  Groups</title>
+  <title>PINO: Person-Interaction Noise Optimization</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+  <!-- Fonts & CSS ---------------------------------------------------------- -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
-
+  <!-- JS ------------------------------------------------------------------- -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
 </head>
+
 <body>
-    </div>
 
-  </div>
-</nav>
-
-
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">PINO: Person-Interaction Noise Optimization for Long-Duration and Customizable Motion Generation of Arbitrary-Sized Groups</h1>
-          
-          <div class="publication-venue">ICCV 2025</div>
-          
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://keunhong.com">Sakuya Ota</a><sup>1,*</sup>,</span>
-            <span class="author-block">
-              <a href="https://utkarshsinha.com">Qing Yu</a><sup>2,*</sup>,</span>
-            <span class="author-block">
-              <a href="https://jonbarron.info">Kent Fujiwara</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://sofienbouaziz.com">Satoshi Ikehata</a><sup>3</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.danbgoldman.com">Ikuro Sato</a><sup>1</sup>
-            </span>
-          </div>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Institute of Science Tokyo,</span>
-            <span class="author-block"><sup>2</sup>LY Corporation,</span>
-            <span class="author-block"><sup>3</sup>National Institute of Informatics</span>
-          </div>
-
-          <div class="is-size-6 eq-cont"><sup>*</sup>Equal contribution</div>
-
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper (Coming Soon)</span>
-                </a>
-              </span>
-              <!-- <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span> -->
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code (Coming Soon)</span>
-                  </a>
-              </span>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- <section class="hero teaser">
-  <div class="container is-max-desktop">
+  <!-- ░░░ HERO (Title, authors, links) ░░░ -->
+  <section class="hero">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
-      </h2>
-    </div>
-  </div>
-</section> -->
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
 
+            <h1 class="title is-1 publication-title">
+              PINO: Person-Interaction Noise Optimization for Long-Duration and Customizable Motion Generation of
+              Arbitrary-Sized Groups
+            </h1>
 
-<section class="hero teaser is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline>
-            <source src="./static/pino_video/others/hitomoji.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline>
-            <source src="./static/pino_video/others/photo_180.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline>
-            <source src="./static/pino_video/others/hand.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+            <div class="publication-venue">ICCV 2025</div>
 
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Generating realistic group interactions involving multiple characters remains challenging as group size expands, because
-            interaction complexity grows combinatorially. Existing conditional diffusion models tackle this by incrementally
-            generating motions conditioned on previously generated characters, but they rely on a single shared prompt; this limits
-            nuanced control and often yields oversimplified interactions.
-          </p>
-          <p>
-            We introduce Person-Interaction Noise Optimization (PINO), a novel, training-free framework for generating realistic and
-            customizable interactions among groups of arbitrary size. PINO decomposes complex group behavior into a sequence of
-            semantically relevant pairwise interactions and leverages pretrained two-person interaction diffusion models. During
-            noise optimization, physics-based penalties ensure physical plausibility by preventing artifacts such as character
-            overlap or penetration, while affording precise user control over orientation, speed, and spatial relationships—without
-            any additional training.
-          </p>
-          <p>
-            Comprehensive evaluations show that PINO produces visually realistic, physically coherent, and highly adaptable
-            multi-person interactions, making it well suited for diverse applications in animation, gaming, and robotics.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
-    <!-- Paper Image -->
-    
-    <!--/ Paper PDF. -->
-
-
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Approach</h2>
-    
-        <img src="./static/images/overview.png" alt="PINO paper overview" style="width:75%; height:auto" />
-    
-        <div class="content" style="margin-top: 1.5em; text-align: left;">
-          <p><strong>PINO</strong> addresses multi-character interaction by decomposing it into a series of pairwise motion generation steps.          </p>
-          <ol>
-            <li>
-              It starts from a pretrained two-person diffusion model, without requiring further training.
-
-            </li>
-            <li>
-              To add a new character, the method forms a pair with an existing one, provides a text prompt describing only that pair,
-              and generates their motion using the model.
-            </li>
-            <li>
-              The initial noise is then optimized to ensure that the generated motion is consistent with the full group—avoiding
-              overlap, maintaining appropriate distances, orientations.
-            </li>
-            <li>
-              This process is repeated iteratively to construct interactions involving arbitrary numbers of characters. A similar procedure can also be applied to extend motion sequences.
-            </li>
-          </ol>
-          <p>
-            Because physical and spatial penalties are enforced during the noise optimization step, PINO allows fine control over
-            motion composition while keeping the diffusion model unchanged.
-          </p>
-        </div>
-      </div>
-    </div>
-</section>
-<!-- 
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-4">Multi-Person Motion Generation</h2>
-        
-
-        
-      </div>
-    </div>
-  
-    <div class="hero is-small">
-      <div class="hero-body">
-        <div class="container">
-          <div id="results-carousel-ex" class="carousel results-carousel">
+            <!-- Authors -->
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://example.com/" target="_blank">Sakuya
+                  Ota</a><sup>1,*</sup>,</span>
+              <span class="author-block"><a href="https://example.com/" target="_blank">Qing
+                  Yu</a><sup>2,*</sup>,</span>
+              <span class="author-block"><a href="https://example.com/" target="_blank">Kent
+                  Fujiwara</a><sup>2</sup>,</span>
+              <span class="author-block"><a href="https://example.com/" target="_blank">Satoshi
+                  Ikehata</a><sup>3</sup>,</span>
+              <span class="author-block"><a href="https://example.com/" target="_blank">Ikuro
+                  Sato</a><sup>1</sup></span>
+            </div>
             
-            <div class="item">
-              
-              <video autoplay muted loop playsinline controls>
-                
-                <source src="./static/pino_video/others/greet.mp4" type="video/mp4">
-              </video>
-              <p>"They acknowledge each other's presence with a polite greeting."</p>
+
+            <!-- Institutions & venue -->
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Institute of Science Tokyo</span>
+              <span class="author-block"><sup>2</sup>LY Corporation</span>
+              <span class="author-block"><sup>3</sup>National Institute of Informatics</span>
+              <span class="eql-cntrb"><small><br><sup>*</sup>Indicates equal contribution</small></span>
             </div>
-            <div class="item">
-              <video autoplay muted loop playsinline controls>
-                <source src="./static/pino_video/others/rsp.mp4" type="video/mp4">
-              </video>
-              <p>"They are engaged in a game of rock-paper-scissors."</p>
-            </div>
-            <div class="item">
-              <video autoplay muted loop playsinline controls>
-                <source src="./static/pino_video/others/jump.mp4" type="video/mp4">
-              </video>
-              <p>"Both two humans simultaneously jump up while raising their right arms."</p>
-            </div>
-            <div class="item">
-              <video autoplay muted loop playsinline controls>
-                <source src="./static/pino_video/others/talk.mp4" type="video/mp4">
-              </video>
-              <p>"They are talking and using hand gestures."</p>
-            </div>
-            <div class="item">
-              <video autoplay muted loop playsinline controls>
-                <source src="./static/pino_video/others/circle_dance.mp4" type="video/mp4">
-              </video>
-              <p>"Both people rotate on their feet in a circular motion, dancing together."</p>
-            </div>
-            <div class="item">
-              <video autoplay muted loop playsinline controls>
-                <source src=".\static\pino_video\boxing\boxing_pino.mp4" type="video/mp4">
-              </video>
-              <p>"Two people are boxing."</p>
-              <p>"One person is boxing, while the other watches and cheers from outside."</p>
-            </div>
+
+            <!-- Links -->
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper (Coming Soon)</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code (Coming Soon)</span>
+                  </a>
+                </span>
+              </div>
+            </div><!-- /links -->
+
           </div>
         </div>
       </div>
     </div>
-</section> -->
+  </section>
+  <!-- ░░░ END HERO ░░░ -->
 
 
-
-<!-- ───────── Multi-Person Motion Generation ───────── -->
-<section class="section" >
-  <div class="container is-max-desktop">
-
-    <!-- 見出し -->
-    <h2 class="title is-4 has-text-centered">
-      Multi-Person Motion Generation
-    </h2>
-
-    <!-- 3 × 2 グリッド -->
-    <div class="columns is-multiline is-variable is-6 has-text-centered" id="multi-person">
-
-      <!-- ─ item 4 ─ -->
-      <div class="column is-one-third-desktop is-half-tablet">
-        <figure>
-          <video autoplay muted loop playsinline controls>
-            <source src="./static/pino_video/others/greet.mp4" type="video/mp4">
-          </video>
-          <figcaption>
-            "They acknowledge each other's presence with a polite greeting."
-          </figcaption>
-        </figure>
+  <!-- ░░░ TEASER CAROUSEL ░░░ -->
+  <section class="hero teaser">
+    <div class="hero-body">
+      <div class="container">
+        <div id="teaser-carousel" class="carousel results-carousel">
+          <div class="item"><video autoplay muted loop playsinline controls>
+              <source src="static/pino_video/others/hitomoji.mp4" type="video/mp4">
+            </video></div>
+          <div class="item"><video autoplay muted loop playsinline controls>
+              <source src="static/pino_video/others/photo_180.mp4" type="video/mp4">
+            </video></div>
+          <div class="item"><video autoplay muted loop playsinline controls>
+              <source src="static/pino_video/others/hand.mp4" type="video/mp4">
+            </video></div>
+        </div>
       </div>
-      
-      <!-- ─ item 5 ─ -->
-      <div class="column is-one-third-desktop is-half-tablet">
-        <figure>
-          <video autoplay muted loop playsinline controls>
-            <source src="./static/pino_video/others/rsp.mp4" type="video/mp4">
-          </video>
-          <figcaption>
-            "They are engaged in a game of rock-paper-scissors."
-          </figcaption>
-        </figure>
-      </div>
-      
-      <!-- ─ item 6 ─ -->
-      <div class="column is-one-third-desktop is-half-tablet">
-        <figure>
-          <video autoplay muted loop playsinline controls>
-            <source src="./static/pino_video/others/jump.mp4" type="video/mp4">
-          </video>
-          <figcaption>
-            "Both humans simultaneously jump up while raising their right arms."
-          </figcaption>
-        </figure>
-      </div>
-
-      <!-- ─ item 1 ─ -->
-      <div class="column is-one-third-desktop is-half-tablet">
-        <figure>
-          <video autoplay muted loop playsinline controls>
-            <source src="./static/pino_video/others/talk.mp4" type="video/mp4">
-          </video>
-          <figcaption>
-            "They are talking and using hand gestures."
-          </figcaption>
-        </figure>
-      </div>
-
-      <!-- ─ item 2 ─ -->
-      <div class="column is-one-third-desktop is-half-tablet">
-        <figure>
-          <video autoplay muted loop playsinline controls>
-            <source src="./static/pino_video/others/circle_dance.mp4" type="video/mp4">
-          </video>
-          <figcaption>
-            "Both people rotate on their feet in a circular motion, dancing together."
-          </figcaption>
-        </figure>
-      </div>
-
-      <!-- ─ item 3 ─ -->
-      <div class="column is-one-third-desktop is-half-tablet">
-        <figure>
-          <video autoplay muted loop playsinline controls>
-            <source src="./static/pino_video/boxing/boxing_pino.mp4" type="video/mp4">
-          </video>
-          <figcaption>
-            "Two people are boxing."<br>
-            "One person is boxing, while the other watches and cheers from outside."
-          </figcaption>
-        </figure>
-      </div>
-
-      
-
-    </div><!-- /.columns -->
+    </div>
+  </section>
+  <!-- ░░░ END TEASER ░░░ -->
 
 
-    <div class="hero is-small">
-      <div class="hero-body">
-        <div class="container">
-          <div id="results-carousel-ex" class="carousel results-carousel" data-navigation="true">
-    
-            <div class="item">
-    
-              <video autoplay muted loop playsinline controls>
-    
-                <source src="./static/pino_video/dance_2.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="item">
-              <video autoplay muted loop playsinline controls>
-                <source src="./static/pino_video/dance_3.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="item">
-              <video autoplay muted loop playsinline controls>
-                <source src="./static/pino_video/jump_3.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="item">
-              <video autoplay muted loop playsinline controls>
-                <source src="./static/pino_video/rsp_4.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="item">
-              <video autoplay muted loop playsinline controls>
-                <source src="./static/pino_video/talk_5.mp4" type="video/mp4">
-              </video>
-            </div>
-            
+  <!-- ░░░ ABSTRACT ░░░ -->
+  <section class="section hero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>Generating realistic group interactions involving multiple characters remains challenging as group size
+              expands, because interaction complexity grows combinatorially. Existing conditional diffusion models
+              tackle this by incrementally generating motions conditioned on previously generated characters, but they
+              rely on a single shared prompt; this limits nuanced control and often yields oversimplified interactions.
+            </p>
+            <p>We introduce <strong>PINO</strong>, a training-free framework that decomposes complex group behavior into
+              semantically relevant pairwise interactions and leverages pretrained two-person diffusion models. During
+              <em>noise optimization</em>, physics-based penalties enforce plausibility—preventing overlap or
+              penetration—while allowing precise user control over orientation, speed, and spatial relationships.</p>
+            <p>Comprehensive evaluations show that PINO produces visually realistic, physically coherent, and highly
+              adaptable multi-person interactions, making it well-suited for animation, gaming, and robotics.</p>
           </div>
         </div>
       </div>
     </div>
+  </section>
+  <!-- ░░░ END ABSTRACT ░░░ -->
 
 
-  </div><!-- /.container -->
-</section>
-
-
-
-    
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-4">Motion Extention</h2>
-        <video autoplay muted loop playsinline>
-          <source src=".\static\pino_video\extention.mp4" type="video/mp4">
-        </video>
-
-
-
+  <!-- ░░░ APPROACH ░░░ -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Approach</h2>
+          <img src="static/images/overview.png" alt="PINO overview" style="width:75%;height:auto;">
+          <div class="content" style="text-align:left;margin-top:1.5em;">
+            <p><strong>PINO</strong> addresses multi-character interaction by decomposing it into pairwise
+              motion-generation steps:</p>
+            <ol>
+              <li>Start from a pretrained two-person diffusion model without further training.</li>
+              <li>To add a new character, form a pair with an existing one, supply a text prompt describing only that
+                pair, and generate their motion.</li>
+              <li>Optimize the initial noise so the new motion respects group-level constraints (distance, orientation,
+                no overlap).</li>
+              <li>Repeat iteratively to construct interactions of arbitrary size, or to extend sequences.</li>
+            </ol>
+            <p>Physics and spatial penalties are enforced during noise optimization, yielding fine-grained control while
+              keeping the diffusion model unchanged.</p>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
+  <!-- ░░░ END APPROACH ░░░ -->
 
 
-</section>
+  <!-- ░░░ MULTI-PERSON GRID ░░░ -->
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <h2 class="title is-4 has-text-centered">Multi-Person Motion Generation</h2>
+
+      <div class="columns is-multiline is-variable is-6 has-text-centered">
+        <!-- 6-item video grid -->
+        <div class="column is-one-third-desktop is-half-tablet">
+          <figure>
+            <video autoplay muted loop playsinline controls>
+              <source src="static/pino_video/others/greet.mp4" type="video/mp4">
+            </video>
+            <figcaption>"They acknowledge each other's presence with a polite greeting."</figcaption>
+          </figure>
+        </div>
+        <div class="column is-one-third-desktop is-half-tablet">
+          <figure>
+            <video autoplay muted loop playsinline controls>
+              <source src="static/pino_video/others/rsp.mp4" type="video/mp4">
+            </video>
+            <figcaption>"They are engaged in a game of rock-paper-scissors."</figcaption>
+          </figure>
+        </div>
+        <div class="column is-one-third-desktop is-half-tablet">
+          <figure>
+            <video autoplay muted loop playsinline controls>
+              <source src="static/pino_video/others/jump.mp4" type="video/mp4">
+            </video>
+            <figcaption>"Both humans jump while raising their right arms."</figcaption>
+          </figure>
+        </div>
+        <div class="column is-one-third-desktop is-half-tablet">
+          <figure>
+            <video autoplay muted loop playsinline controls>
+              <source src="static/pino_video/others/talk.mp4" type="video/mp4">
+            </video>
+            <figcaption>"They are talking and using hand gestures."</figcaption>
+          </figure>
+        </div>
+        <div class="column is-one-third-desktop is-half-tablet">
+          <figure>
+            <video autoplay muted loop playsinline controls>
+              <source src="static/pino_video/others/circle_dance.mp4" type="video/mp4">
+            </video>
+            <figcaption>"Both people rotate on their feet in a circular dance."</figcaption>
+          </figure>
+        </div>
+        <div class="column is-one-third-desktop is-half-tablet">
+          <figure>
+            <video autoplay muted loop playsinline controls>
+              <source src="static/pino_video/boxing/boxing_pino.mp4" type="video/mp4">
+            </video>
+            <figcaption>"Two people are boxing; another cheers outside the ring."</figcaption>
+          </figure>
+        </div>
+      </div><!-- /grid -->
+
+      <!-- Extra carousel (optional) -->
+      <div class="hero is-small">
+        <div class="hero-body">
+          <div class="container">
+            <div id="results-carousel-ex" class="carousel results-carousel" data-navigation="true">
+              <div class="item"><video autoplay muted loop playsinline>
+                  <source src="static/pino_video/dance_2.mp4" type="video/mp4">
+                </video></div>
+              <div class="item"><video autoplay muted loop playsinline>
+                  <source src="static/pino_video/dance_3.mp4" type="video/mp4">
+                </video></div>
+              <div class="item"><video autoplay muted loop playsinline>
+                  <source src="static/pino_video/jump_3.mp4" type="video/mp4">
+                </video></div>
+              <div class="item"><video autoplay muted loop playsinline>
+                  <source src="static/pino_video/rsp_4.mp4" type="video/mp4">
+                </video></div>
+              <div class="item"><video autoplay muted loop playsinline>
+                  <source src="static/pino_video/talk_5.mp4" type="video/mp4">
+                </video></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- ░░░ END MULTI-PERSON ░░░ -->
 
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-4">Ablation Study</h2>
-        <video autoplay muted loop playsinline >
-          <source src=".\static\pino_video\ablation5.mp4" type="video/mp4">
-        </video>
-
-
+  <!-- ░░░ EXTENSION & ABLATION ░░░ -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-4">Motion Extension</h2>
+          <video autoplay muted loop playsinline>
+            <source src="static/pino_video/extention.mp4" type="video/mp4">
+          </video>
+        </div>
       </div>
     </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-4">Ablation Study</h2>
+          <video autoplay muted loop playsinline>
+            <source src="static/pino_video/ablation5.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ░░░ END EXTENSION & ABLATION ░░░ -->
 
 
-</section>
-
-
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@inproceedings{ota2025pino,
-    author = {Ota, Sakuya and Yu, Qing and Fujiwara, Kent and Ikehata, Satoshi and Sato, Ikuro},
-    title = {PINO: Person-Interaction Noise Optimization for Long-Duration and Customizable Motion Generation of
-    Arbitrary-Sized Groups},
-    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
-    year = {2025}
+  <!-- ░░░ BIBTEX ░░░ -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@inproceedings{ota2025pino,
+  author    = {Ota, Sakuya and Yu, Qing and Fujiwara, Kent and Ikehata, Satoshi and Sato, Ikuro},
+  title     = {PINO: Person-Interaction Noise Optimization for Long-Duration and Customizable Motion Generation of Arbitrary-Sized Groups},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year      = {2025}
 }</code></pre>
-  </div>
-</section>
-
-
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
     </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
+  </section>
+  <!-- ░░░ END BIBTEX ░░░ -->
+
+
+  <!-- ░░░ FOOTER ░░░ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>
+              This page was built using the
+              <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project
+                Page Template</a>,
+              itself adapted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.<br>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
+  <!-- ░░░ END FOOTER ░░░ -->
+
+  <!-- Optional: page-view tracker (e.g., Statcounter) -------------------------------- -->
+  <!-- <script> … </script> -->
 
 </body>
+
 </html>
