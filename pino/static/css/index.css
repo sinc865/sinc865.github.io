@@ -93,7 +93,7 @@ body {
     height: 48px;
     border-radius: 50%;
     background: #fff;
-    box-shadow: 0 2px 6px rgb(255, 255, 255);
+    box-shadow: 0 2px 6px rgb(180, 180, 180);
     z-index: 50;
     display: flex;
     align-items: center;
@@ -172,3 +172,15 @@ section figcaption {
     min-width: 100% !important;
     width: 100% !important;
 } */
+
+@media (max-width:768px) {
+    .carousel-nav-left,
+    .slider-navigation-previous {
+        top: 90% !important;
+    }
+
+    .carousel-nav-right,
+    .slider-navigation-next {
+        top: 90% !important;
+    }
+}
