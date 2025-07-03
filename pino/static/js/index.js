@@ -46,6 +46,7 @@ $(document).ready(function () {
       gutter: 20,      // ← スライド同士の隙間を 20px
       loop: itemCount > 1,
       autoplay: false,
+      navigation: true,
 
       /* breakpoints は “配列” で渡す */
       breakpoints: [{
@@ -76,17 +77,18 @@ $(document).ready(function () {
   bulmaSlider.attach();
 
   /* ▼ Results セクション用カルーセル ---------------------------- */
-  const resultsEl = document.querySelector('#results-carousel-ex');
-  if (resultsEl) {
-    const n = resultsEl.querySelectorAll('.item').length;
+  const resultsE2 = document.querySelector('#results-carousel-ex');
+  if (resultsE2) {
+    const n = resultsE2.querySelectorAll('.item').length;
 
     const resultsOpts = {
-      slidesToShow: 2,   // PC は 3 枚
+      slidesToShow: 1,   // PC は 3 枚
       slidesToScroll: 1,
       centerMode: false,
       gutter: 20,
       loop: n > 1,
       autoplay: false,
+      navigation: true,
       breakpoints: [{
         changePoint: 768,             // 768px 以下はスマホ扱い
         slidesToShow: 1,
@@ -96,7 +98,7 @@ $(document).ready(function () {
       }]
     };
 
-    bulmaCarousel.attach(resultsEl, resultsOpts);
+    bulmaCarousel.attach(resultsE2, resultsOpts);
   }
 
 

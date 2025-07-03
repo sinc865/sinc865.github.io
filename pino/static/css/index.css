@@ -122,7 +122,8 @@ body {
   border: None;
   border-radius: 0px;
   padding: 0;
-  font-size: 0;
+  font-size: 16px;
+  text-align: center;
 }
 
 .results-carousel video {
@@ -224,9 +225,7 @@ body {
   /* デスクトップでの最大横幅 */
   margin: auto;
   /* 画面中央に配置            */
-  overflow:visible
-  /* 左右にスライドをはみ出させる */
-  
+  overflow:visible;
 }
 
 /* width 指定を外す。padding も tiny-slider に任せる */
@@ -247,7 +246,7 @@ body {
   border-radius: 25px;
   object-fit: cover;
   /* 「見切れても良い」なら cover／全景なら contain */
-  box-shadow: None;
+  box-shadow:None;
   transition: transform .3s;
 }
 
@@ -352,3 +351,90 @@ body {
 #results-carousel-ex video {
   border-radius: 20px;
 }
+
+#multi-person video {
+  width: 100%;
+  max-width:400px;
+  height: auto;
+  border-radius: 10px;
+  /* 角丸調整はお好みで */
+}
+
+section figcaption {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+
+/* 共通スタイル */
+#results-carousel .slider-nav-previous,
+#results-carousel .slider-nav-next {
+  position: absolute;
+  top: 50%;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  transform: translateY(-50%);
+  z-index: 50;
+}
+
+/* PC は外側へ 60px 押し出す */
+@media (min-width:769px) {
+  #results-carousel .slider-nav-previous { left: -60px; }
+  #results-carousel .slider-nav-next    { right: -60px; }
+}
+
+/* スマホは内側に */
+@media (max-width:768px) {
+  #results-carousel .slider-nav-previous { left: 10px; }
+  #results-carousel .slider-nav-next    { right: 10px; }
+}
+
+/* results-carousel-ex 用の共通スタイル */
+#results-carousel-ex .carousel-nav-left,
+#results-carousel-ex .carousel-nav-right {
+  position: absolute;
+  top: 50%;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* PC (≥769px) では外側へ押し出す */
+/* @media (min-width: 769px) {
+  #results-carousel-ex .carousel-nav-left {
+    left: -60px;
+  }
+
+  #results-carousel-ex .carousel-nav-right {
+    right: -60px;
+  }
+} */
+
+/* スマホは内側に置く */
+/* @media (max-width: 768px) {
+  #results-carousel-ex .carousel-nav-left {
+    left: 10px;
+  }
+
+  #results-carousel-ex .carousel-nav-right {
+    right: 10px;
+  }
+} */
+
+
+#results-carousel-ex {
+  overflow:visible;
+  /* ← 矢印がクリップされないように */
+  position: relative;
+  /* ← 子の absolute 位置決め用 */
+}
+
