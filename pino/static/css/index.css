@@ -113,9 +113,10 @@ body {
 }
 
 section figcaption {
-    font-size: 1.1rem;
-    line-height: 1.4;
-    margin-top: .5rem;
+    font-size: 1.0rem;
+    line-height: 1.2;
+    margin-top: .4rem;
+    text-align: center;
 }
 
 /*────────────────  その他小要素  ────────────────*/
@@ -183,4 +184,14 @@ section figcaption {
     .slider-navigation-next {
         top: 90% !important;
     }
+}
+
+.video-title {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    /* 動画とのスペース（必要に応じて調整） */
+    font-size: 1.1em;
+    /* 任意：ちょっと大きめにするなら */
+    text-align: center;
+    /* 任意：中央揃え */
 }
