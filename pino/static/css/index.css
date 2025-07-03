@@ -102,19 +102,7 @@ body {
 
 
 
-/* モバイルは内側へ */
-@media (max-width:768px) {
 
-    .carousel-nav-left,
-    .slider-navigation-previous {
-        left: 10px !important;
-    }
-
-    .carousel-nav-right,
-    .slider-navigation-next {
-        right: 10px !important;
-    }
-}
 
 /*────────────────  マルチパーソン動画グリッド  ────────────────*/
 #multi-person video {
@@ -157,7 +145,7 @@ section figcaption {
 
 /* 追加：ティーザー（最初のカルーセル）の動画は最大400px */
 #teaser-carousel video {
-    width: 100%;
+    width: 90%;
     max-width: 450px;
     height: auto;
     margin: 0 auto;
@@ -170,17 +158,17 @@ section figcaption {
   }
 
 /* teaser だけを 1 行 1 枚に強制 */
-#teaser-carousel .tns-item {
+/* #teaser-carousel .tns-item {
     flex: 0 0 100% !important;
     max-width: 100% !important;
-}
+} */
 
 
 /* ティーザーカルーセルのアイテム幅を強制的に100%にする（最終修正版） */
-#teaser-carousel .item,
+/* #teaser-carousel .item,
 #teaser-carousel .carousel-item,
 #teaser-carousel .tns-item {
     flex: 0 0 100% !important;
     min-width: 100% !important;
     width: 100% !important;
-}
+} */
