@@ -223,18 +223,19 @@
           <h2 class="title is-3">Approach</h2>
           <img src="static/images/overview.png" alt="PINO overview" style="width:75%;height:auto;">
           <div class="content" style="text-align:left;margin-top:1.5em;">
-            <p><strong>PINO</strong> addresses multi-character interaction by decomposing it into a series of pairwise motion generation steps.</p>
+            <p><strong>PINO</strong> addresses multi-character interaction by decomposing it into a series of pairwise
+              motion-generation steps.</p>
             <ol>
-              <li>Start from a pretrained two-person diffusion model without further training.</li>
-              <li>To add a new character, the method forms a pair with an existing one, provides a text prompt describing only that pair,
-              and generates their motion using the model.</li>
-              <li>The diffusion model's initial noise is then optimized to ensure that the generated motion is consistent with the full
-              group—avoiding overlaps and preserving appropriate distances and orientations.</li>
-              <li>This process is repeated iteratively to construct interactions involving arbitrary numbers of characters. A similar
-              procedure can also be applied to extend motion sequences.</li>
+              <li>It starts from a pretrained two-person diffusion model.</li>
+              <li>To add a new character, the method pairs the newcomer with one of the existing characters, supplies a text prompt
+                describing only that pair, and generates their motion with the same model.</li>
+              <li>The model's initial noise is then optimized so that the new motion fits the entire group—avoiding overlaps and
+                preserving proper distances and orientations.</li>
+              <li>This optimization-and-add cycle is repeated to build interactions of any size, and the same idea can be used to
+                extend motion sequences over time.</li>
             </ol>
-            <p>Because physical and spatial penalties are enforced during the noise optimization step, PINO allows fine control over
-            motion composition while keeping the diffusion model unchanged.</p>
+            <p>Because physical and spatial penalties are built into the noise-optimization step, PINO offers fine-grained control
+              over motion composition without any additional training of the diffusion model.</p>
           </div>
         </div>
       </div>
