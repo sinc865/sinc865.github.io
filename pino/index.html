@@ -195,19 +195,19 @@
         <div class="column is-four-fifths">
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
-            <p>Generating realistic group interactions involving multiple characters remains challenging as group size expands, because
-            interaction complexity grows combinatorially. Existing conditional diffusion models tackle this by incrementally
-            generating motions conditioned on previously generated characters, but they rely on a single shared prompt; this limits
-            nuanced control and often yields oversimplified interactions.
+            <p>Generating realistic group interactions involving multiple characters remains challenging due to increasing complexity
+            as group size expands. While existing conditional diffusion models incrementally generate motions by conditioning on
+            previously generated characters, they rely on single shared prompts, limiting nuanced control and leading to overly
+            simplified interactions.
             </p>
-            <p>We introduce Person-Interaction Noise Optimization (PINO), a novel, training-free framework for generating realistic and
-            customizable interactions among groups of arbitrary size. PINO decomposes complex group behavior into a sequence of
-            semantically relevant pairwise interactions and leverages pretrained two-person interaction diffusion models. During
-            noise optimization, physics-based penalties ensure physical plausibility by preventing artifacts such as character
-            overlap or penetration, while affording precise user control over orientation, speed, and spatial relationships—without
-            any additional training.</p>
-            <p>Comprehensive evaluations show that PINO produces visually realistic, physically coherent, and highly adaptable
-            multi-person interactions, making it well suited for diverse applications in animation, gaming, and robotics.</p>
+            <p>In this paper, we introduce Person-Interaction Noise Optimization (PINO), a novel, training-free framework designed for
+            generating realistic and customizable interactions among groups of arbitrary size. PINO decomposes complex group
+            interactions into sequential, semantically relevant pairwise interactions, leveraging pretrained two-person interaction
+            diffusion models. To ensure physical plausibility and avoid common artifacts such as overlapping or penetration between
+            characters, PINO employs physics-based penalties during noise optimization. This approach allows precise user control
+            over character orientation, speed, and spatial relationships without additional training.</p>
+            <p>Comprehensive evaluations demonstrate that PINO generates visually realistic, physically coherent, and adaptable
+            multi-person interactions suitable for diverse animation, gaming, and robotics applications.</p>
           </div>
         </div>
       </div>
