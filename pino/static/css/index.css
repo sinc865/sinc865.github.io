@@ -195,3 +195,16 @@ section figcaption {
     text-align: center;
     /* 任意：中央揃え */
 }
+
+/* ❶-1 3 列ティーザー専用 ─────────────── */
+.teaser .video-title {
+    /* タイトル部分を “2 行ぶん” 確保しておく */
+    min-height: 3.2rem;
+    /* 行高に合わせて調整。2 行固定なら 2.8〜3.2rem 程度 */
+    display: flex;
+    /* 中央寄せ */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 0.6rem;
+    /* お好みで */ }
