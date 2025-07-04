@@ -10,8 +10,8 @@
   <meta property="og:title" content="PINO: Person-Interaction Noise Optimization" />
   <meta property="og:description"
     content="Long-duration &amp; customizable motion generation for arbitrary-sized groups." />
-  <meta property="og:url" content="https://your.domain/PINO/" />
-  <meta property="og:image" content="static/images/og_banner.png" />
+  <meta property="og:url" content="https://sinc865.github.io/pino/" />
+  <meta property="og:image" content="#" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
@@ -25,7 +25,7 @@
   <meta name="keywords" content="motion generation, diffusion models, multi-person interaction, character animation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PINO: Person-Interaction Noise Optimization</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="#">
 
   <!-- Fonts & CSS ---------------------------------------------------------- -->
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
@@ -90,14 +90,14 @@
                 <span class="link-block">
                   <a href="#" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                    <span>Paper (Coming Soon)</span>
+                    <span>Paper</span>
                   </a>
                 </span>
 
                 <span class="link-block">
-                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <a href="https://github.com/sinc865/PINO" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="fab fa-github"></i></span>
-                    <span>Code (Coming Soon)</span>
+                    <span>Code</span>
                   </a>
                 </span>
               </div>
@@ -228,8 +228,8 @@
               <li>Start from a pretrained two-person diffusion model without further training.</li>
               <li>To add a new character, the method forms a pair with an existing one, provides a text prompt describing only that pair,
               and generates their motion using the model.</li>
-              <li>The initial noise is then optimized to ensure that the generated motion is consistent with the full group—avoiding
-              overlap, maintaining appropriate distances, orientations.</li>
+              <li>The diffusion model's initial noise is then optimized to ensure that the generated motion is consistent with the full
+              group—avoiding overlaps and preserving appropriate distances and orientations.</li>
               <li>This process is repeated iteratively to construct interactions involving arbitrary numbers of characters. A similar
               procedure can also be applied to extend motion sequences.</li>
             </ol>
