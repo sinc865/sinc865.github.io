@@ -8,6 +8,6 @@ index:
     venue: 'IEEE/CVF International Conference on Computer Vision (ICCV)'
     year: 2025
     website: '/pino/'
-    paper: '/publications/ICCV2025_PINO.pdf'
-    code: 'https://github.com/yourname/pino'
+    paper: 'https://arxiv.org/abs/2507.19292'
+    code: 'https://github.com/sinc865/PINO'
     thumb:   '/assets/img/thumb/pino_thumb.png'
