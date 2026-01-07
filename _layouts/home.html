@@ -7,7 +7,7 @@ layout: default
 <section class="profile-section mb-5">
   <div class="row g-4 align-items-start">
     <div class="col-md-4 text-center">
-      <img src="{{ site.github.url }}/{{ profile.image }}" alt="{{ profile.name.en }}" class="profile-image rounded">
+      <img src="{{ profile.image | relative_url }}" alt="{{ profile.name.en }}" class="profile-image rounded">
 
       <div class="social-links mt-3">
         {% for item in site.data.settings.social %}
