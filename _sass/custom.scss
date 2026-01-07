@@ -1,27 +1,121 @@
+// ===========================================
+// 変数（カスタマイズ用）
+// ===========================================
 $backgroundColor: #ffffff;
-$bodyColor: #000000;
+$bodyColor: #333333;
 $bodyFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-$linkColor: #212529 !important;
+$linkColor: #0066cc;
+$linkHoverColor: #004499;
+$borderColor: #e0e0e0;
 
+// ===========================================
+// ベーススタイル
+// ===========================================
 body {
   background: $backgroundColor;
   color: $bodyColor;
   font-family: $bodyFont;
+  line-height: 1.7;
 }
 
 body a {
   color: $linkColor;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $linkHoverColor;
+  }
 }
 
+// ===========================================
+// ヘッダー
+// ===========================================
+.site-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: $bodyColor;
+}
+
+.site-description {
+  font-size: 0.95rem;
+}
+
+header a:hover {
+  .site-title {
+    color: $linkColor;
+  }
+}
+
+// ===========================================
+// レイアウト
+// ===========================================
+.col-lg-8.mx-auto,
+[class^="container-"],
+.container,
+.container-fluid {
+  max-width: 900px !important;
+  width: 100% !important;
+  flex: 0 0 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+// ===========================================
+// プロフィールセクション
+// ===========================================
+.profile-section {
+  padding-bottom: 2rem;
+}
+
+.profile-image {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  object-fit: cover;
+}
+
+.profile-info {
+  p {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.social-links {
+  .social-icon {
+    display: inline-block;
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    color: $bodyColor;
+    transition: color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      color: $linkColor;
+      transform: scale(1.1);
+    }
+  }
+}
+
+.interest-list {
+  padding-left: 1.2rem;
+  margin-bottom: 0;
+
+  li {
+    margin-bottom: 0.25rem;
+  }
+}
+
+// ===========================================
+// Publications
+// ===========================================
 .pub-thumb {
   width: 200px;
   max-width: 25%;
   height: auto;
   object-fit: contain;
-  margin-right: .75rem;
+  margin-right: 1rem;
   flex-shrink: 0;
   vertical-align: top;
-
   align-self: flex-start;
   border: 0 !important;
   outline: none !important;
@@ -36,17 +130,18 @@ ul.list-unstyled li em {
   font-style: italic;
 }
 
-.col-lg-8.mx-auto,
-[class^="container-"],
-.container,
-.container-fluid {
-  max-width: 900px !important;
-  width: 100% !important;
-  /* Bootstrap が付ける固定幅をゼロに */
-  flex: 0 0 100% !important;
-  /* col-* の flex-basis を打ち消す */
-  margin-left: auto !important;
-  margin-right: auto !important;
+// ===========================================
+// レスポンシブ
+// ===========================================
+@media (max-width: 767px) {
+  .profile-image {
+    max-width: 150px;
+    margin-bottom: 1rem;
+  }
+
+  .pub-thumb {
+    max-width: 80px;
+  }
 }
 
 

@@ -4,3 +4,7 @@
 .sass-cache
 _site
 Gemfile.lock
+
+# Claude Code
+CLAUDE.md
+vendor/*

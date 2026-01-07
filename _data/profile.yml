@@ -1,0 +1,33 @@
+# プロフィール情報
+# このファイルを編集してプロフィールを更新できます
+
+name:
+  en: "Sakuya Ota"
+  ja: "太田 朔哉"
+
+# プロフィール画像（assets/img/ に配置）
+image: "assets/img/home.jpg"
+
+# 所属情報
+affiliation:
+  position: "M.S. Student"
+  lab: "Sato Laboratory"
+  department: "Department of Computer Science, School of Computing"
+  institution: "Institute of Science Tokyo"
+  # lab_url: "https://example.com/lab"  # ラボのURLがあれば
+
+# 自己紹介文（Markdown対応）
+bio: |
+  I am an M.S. student at the Sato Laboratory in the Department of Computer Science, School of Computing, Institute of Science Tokyo. My research interests include computer vision.
+
+# 研究興味（表示する場合はコメント解除）
+# interests:
+#   - "Computer Vision"
+#   - "Machine Learning"
+#   - "Human Motion Generation"
+
+# メールアドレス（表示する場合はコメント解除）
+# email: "example@example.com"
+
+# 外部リンク（アイコン名はFont Awesomeを参照）
+# social設定は _data/settings.yml で管理

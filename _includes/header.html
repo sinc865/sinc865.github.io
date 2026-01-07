@@ -1,15 +1,13 @@
-<header class="d-flex flex-column flex-md-row align-items-center pb-3 mb-5 border-bottom">
-  <div>
-    <a href="{{ site.github.url }}/" class="d-flex align-items-center text-decoration-none">
-      <span class="fs-1">{{ site.title }}</span>
-    </a>
-    <a href="{{ site.github.url }}/" class="d-flex align-items-center text-decoration-none">
-      <span>{{ site.description }}</span>
-    </a>
-  </div>
-  <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+<header class="pb-3 mb-4 border-bottom">
+  <a href="{{ site.github.url }}/" class="text-decoration-none">
+    <h1 class="site-title mb-0">{{ site.title }}</h1>
+    <span class="site-description text-muted">{{ site.description }}</span>
+  </a>
+  {% if site.data.settings.menu.size > 0 %}
+  <nav class="mt-2">
     {% for item in site.data.settings.menu %}
-      <a class="me-3 py-2 text-decoration-none" href="{{ site.github.url }}{{ item.url }}">{{ item.name }}</a>
+      <a class="me-3 text-decoration-none" href="{{ site.github.url }}{{ item.url }}">{{ item.name }}</a>
     {% endfor %}
   </nav>
+  {% endif %}
 </header>

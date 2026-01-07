@@ -1,9 +1,3 @@
-<footer class="pt-5 my-5 text-muted border-top">
-  <div class="row">
-    <div class="col-md-6 text-end social-media-icons">
-      {% for item in site.data.settings.social %}
-        <a href="{{ item.link }}" class="ms-3 fs-5"><i class="fab fa-{{ item.icon }}"></i></a>
-      {% endfor %}
-    </div>
-  </div>
+<footer class="pt-4 my-4 text-muted border-top">
+  <small>&copy; {{ site.time | date: '%Y' }} {{ site.data.profile.name.en }}</small>
 </footer>
