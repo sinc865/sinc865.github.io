@@ -44,7 +44,7 @@
           <strong>{{ p.title }}</strong><br>
           {{ p.authors }}<br>
           <em>{{ p.venue }}{% if p.number %}, {{ p.number }}{% endif %}, {{ p.year }}</em>
-          {% if p.award %}<br><span class="text-danger fw-semibold">{{ p.award }}</span>{% endif %}
+          {% if p.award %} <span class="text-danger fw-semibold">{{ p.award }}</span>{% endif %}
         </div>
       </li>
       {% endfor %}
