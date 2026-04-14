@@ -32,3 +32,24 @@
     </ul>
   </div>
 </div>
+
+{% unless page.title == "Home" %}
+<div class="row g-5 mb-5">
+  <div>
+    <h3 class="border-bottom pb-3 mb-4">国内学会</h3>
+
+    <ul class="list-unstyled publication-list">
+      {% for p in site.data.publications.domestic %}
+      <li class="d-flex mb-4">
+        <div>
+          <strong>{{ p.title }}</strong><br>
+          {{ p.authors }}<br>
+          <em>{{ p.venue }}{% if p.number %}, {{ p.number }}{% endif %}, {{ p.year }}</em>
+          {% if p.award %}<br><span class="text-danger fw-semibold">{{ p.award }}</span>{% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endunless %}
