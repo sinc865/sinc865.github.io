@@ -12,3 +12,14 @@
     {% endif %}
   </div>
 </div>
+
+{% unless page.title == "Home" %}
+<div class="row g-5 mb-5">
+  <div>
+    <h3 class="fw-bold border-bottom pb-3 mb-5">国内学会</h3>
+    {% for item in site.data.publications.domestic %}
+      <p>{% if item.url %}<a href="{{ item.url }}">{{ item.name }}</a>{% else %}{{ item.name }}{% endif %}</p>
+    {% endfor %}
+  </div>
+</div>
+{% endunless %}

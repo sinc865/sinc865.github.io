@@ -8,3 +8,7 @@ index:
 - {name: 'Shock interactions, turbulence and the origin of the stellar mass spectrum. Ralph E. Pudritz and N. K.-R. Kevlahan', url: 'http://ms.mcmaster.ca/kevla/pdf/articles/PhilTransRSoc_2013.pdf'}
 - {name: 'Low shear diffusion central schemes for particle methods. Jonathan Panuelos, James Wadsley, Nicholas Kevlahan', url: 'http://ms.mcmaster.ca/kevla/pdf/articles/jcp_v414.pdf'}
 - {name: 'Numerical solutions of thin film equations for polymer flows. Thomas. Salez, Joshua D. McGraw, Sara Cormier, Oliver Bäumchen, Kari Dalnoki-Veress, and Elie Raphaël', url: 'https://static1.squarespace.com/static/5684891d7086d74497aeb71f/t/56ec510d2fe1319543ab6d6f/1458327821946/10.1140-epje-i2012-12114-x.pdf'}
+
+domestic:
+- {name: '太田 朔哉, 金崎 朝子. テキスト付き動画データを用いた動作生成に関する研究. Meeting on Image Recognition and Understanding (MIRU), IS-3-083, 2024.'}
+- {name: '太田 朔哉, 郁青, 藤原 研人, 池畑 諭, 佐藤 育郎. 拡散モデルのノイズ最適化を用いた多人数インタラクション動作生成. Meeting on Image Recognition and Understanding (MIRU), 2025. <span class="text-danger fw-semibold">インタラクティブ発表賞</span>'}
