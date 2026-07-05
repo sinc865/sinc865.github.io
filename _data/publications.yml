@@ -1,6 +1,14 @@
 featured:
+  - winning-noise-tickets2026
   - pino2025        # ←ユニーク ID（任意）
 index:
+  - id: winning-noise-tickets2026
+    authors: 'Sakuya Ota, Qing Yu, Kent Fujiwara, Satoshi Ikehata, Ikuro Sato'
+    title: 'Retrieving and Refining Winning Noise Tickets for Diffusion-Based Motion Generation'
+    venue: 'European Conference on Computer Vision (ECCV)'
+    year: 2026
+    thumb: ''
+
   - id: pino2025
     authors: 'Sakuya Ota*, Qing Yu*, Kent Fujiwara, Satoshi Ikehata, Ikuro Sato'
     note: '*equal contribution'
