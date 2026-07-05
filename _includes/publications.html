@@ -12,10 +12,13 @@
       {% for ref in pubs %}
       {% capture pid %}{{ ref.id | default: ref }}{% endcapture %}
       {% assign p = site.data.publications.index | where:"id", pid | first %}
+      {% assign thumb = p.thumb | default: '' | strip %}
 
       <li class="d-flex mb-4">
-        {% if p.thumb %}
-        <img src="{{ p.thumb }}" alt="{{ p.title }} thumbnail" class="me-3 flex-shrink-0 pub-thumb">
+        {% if thumb != '' %}
+        <img src="{{ thumb }}" alt="{{ p.title }} thumbnail" class="me-3 flex-shrink-0 pub-thumb">
+        {% else %}
+        <span class="me-3 flex-shrink-0 pub-thumb pub-thumb-empty" aria-hidden="true"></span>
         {% endif %}
 
         <div>

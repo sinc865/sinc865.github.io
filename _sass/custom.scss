@@ -109,6 +109,7 @@ header a:hover {
 // Publications
 // ===========================================
 .pub-thumb {
+  display: block;
   width: 200px;
   max-width: 25%;
   height: auto;
@@ -143,5 +144,4 @@ ul.list-unstyled li em {
     max-width: 80px;
   }
 }
-
 
