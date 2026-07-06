@@ -7,6 +7,7 @@ index:
     title: 'Retrieving and Refining Winning Noise Tickets for Diffusion-Based Motion Generation'
     venue: 'European Conference on Computer Vision (ECCV)'
     year: 2026
+    website: '/winro/'
     thumb: '/assets/img/thumb/winro_thumb.png'
 
   - id: pino2025

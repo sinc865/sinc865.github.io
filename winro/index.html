@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <!-- ✦ Social-media / SEO --------------------------------------------------- -->
+  <meta name="description"
+    content="WINRO retrieves and refines winning noise tickets, initial noises that carry latent motion semantics, to improve text-motion alignment of diffusion-based motion generation without any retraining.">
+  <meta property="og:title" content="WINRO: Winning Noise Retrieval and Optimization" />
+  <meta property="og:description"
+    content="Retrieving and Refining Winning Noise Tickets for Diffusion-Based Motion Generation (ECCV 2026)" />
+  <meta property="og:url" content="https://sinc865.github.io/winro/" />
+  <meta property="og:image" content="https://sinc865.github.io/winro/static/images/teaser.jpg" />
+
+  <meta name="twitter:title" content="WINRO: Winning Noise Retrieval and Optimization">
+  <meta name="twitter:description"
+    content="Retrieving and Refining Winning Noise Tickets for Diffusion-Based Motion Generation (ECCV 2026)">
+  <meta name="twitter:image" content="https://sinc865.github.io/winro/static/images/teaser.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Basic --------------------------------------------------------------- -->
+  <meta name="keywords"
+    content="motion generation, diffusion models, text-to-motion, noise optimization, winning tickets, character animation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WINRO: Retrieving and Refining Winning Noise Tickets for Diffusion-Based Motion Generation</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico">
+
+  <!-- Fonts & CSS ---------------------------------------------------------- -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <!-- JS ------------------------------------------------------------------- -->
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/three.min.js"></script>
+  <script src="static/js/OrbitControls.js"></script>
+  <script src="static/js/winro_viewer.js"></script>
+</head>
+
+<body>
+
+  <!-- ░░░ HERO (Title, authors, links) ░░░ -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+
+            <h1 class="title is-1 publication-title">
+              Retrieving and Refining Winning Noise Tickets<br class="title-break">
+              for Diffusion-Based Motion Generation
+            </h1>
+
+            <div class="publication-venue">ECCV 2026</div>
+
+            <!-- Authors -->
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://sinc865.github.io/" target="_blank">Sakuya
+                  Ota</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="https://yu1ut.com/" target="_blank">Qing
+                  Yu</a><sup>2</sup>,</span>
+              <span class="author-block"><a href="https://kfworks.com/" target="_blank">Kent
+                  Fujiwara</a><sup>2</sup>,</span>
+              <span class="author-block"><a href="https://satoshi-ikehata.github.io/" target="_blank">Satoshi
+                  Ikehata</a><sup>3</sup>,</span>
+              <span class="author-block"><a href="https://dblp.org/pid/68/10406.html" target="_blank">Ikuro
+                  Sato</a><sup>1</sup></span>
+            </div>
+
+            <!-- Institutions & venue -->
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Institute of Science Tokyo</span>
+              <span class="author-block"><sup>2</sup>LY Corporation</span>
+              <span class="author-block"><sup>3</sup>National Institute of Informatics</span>
+            </div>
+
+            <!-- Links -->
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- TODO: replace href with the arXiv / paper link when available -->
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark" title="Coming soon">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper (coming soon)</span>
+                  </a>
+                </span>
+
+                <!-- TODO: replace href with the code repository when available -->
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark" title="Coming soon">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code (coming soon)</span>
+                  </a>
+                </span>
+              </div>
+            </div><!-- /links -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ░░░ END HERO ░░░ -->
+
+
+  <!-- ░░░ TEASER ░░░ -->
+  <section class="hero teaser">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <figure>
+          <img src="static/images/teaser.jpg" alt="Winning Noise Ticket Hypothesis for motion">
+          <figcaption>
+            <strong>The Winning Noise Ticket Hypothesis for motion.</strong>
+            Certain initial noises inherently encode motion semantics, producing meaningful motion even under a
+            <em>null</em> prompt (right), while others yield static poses regardless of conditioning (left).
+            WINRO retrieves and refines such tickets to improve text-motion alignment.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+  <!-- ░░░ END TEASER ░░░ -->
+
+
+  <!-- ░░░ ABSTRACT ░░░ -->
+  <section class="section hero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>Diffusion-based text-to-motion models synthesize realistic human motions but often exhibit semantic
+              drift from the input text. Motion is inherently temporal, especially in compositional and long-duration
+              sequences that require semantic consistency across multiple action segments and smooth kinematic
+              transitions throughout the trajectory. We posit that the initial noise is central to this consistency:
+              within the Gaussian noise space, certain instances, i.e. <em>winning noise tickets</em>, carry latent
+              structure that biases denoising toward particular motion semantics, even under null prompts.</p>
+            <p>We propose <strong>WI</strong>nning <strong>N</strong>oise <strong>R</strong>etrieval and
+              <strong>O</strong>ptimization (<strong>WINRO</strong>), a training-free, model-agnostic framework that
+              improves text-motion alignment by selecting and refining such tickets before diffusion sampling.
+              WINRO maps random noises to motion features generated under null prompts, retrieves the best-aligned
+              noise for a given text, and refines it via a KL-regularized objective that reduces the residual semantic
+              gap while preserving the Gaussian prior. An optional LoRA-based adapter amortizes this refinement into a
+              single forward pass.</p>
+            <p>WINRO consistently improves text-motion fidelity across different base models, MDM and MotionLCM,
+              on HumanML3D without retraining, improves temporal robustness on the MTT benchmark, and generalizes to
+              applications such as motion stylization and spatial constraint satisfaction.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ░░░ END ABSTRACT ░░░ -->
+
+
+  <!-- ░░░ METHOD ░░░ -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Method</h2>
+
+          <div class="method-figure">
+            <figure>
+              <img src="static/images/retrieval.png" alt="Overview of Winning Noise Ticket Retrieval">
+              <figcaption>
+                <strong>Winning Noise Ticket Retrieval.</strong> The input text retrieves the best-aligned noise from
+                a dictionary of noise-feature pairs built under null prompts.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="method-figure">
+            <figure>
+              <img src="static/images/refinement.png" alt="Overview of Winning Noise Ticket Refinement">
+              <figcaption>
+                <strong>Winning Noise Ticket Refinement.</strong> The retrieved noise is further refined with a
+                KL-regularized objective that preserves the Gaussian prior.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="content" style="text-align:left;margin-top:1.5em;">
+            <p><strong>WINRO</strong> is training-free and model-agnostic: it operates purely on the initial noise,
+              before diffusion sampling.</p>
+            <ol>
+              <li><strong>Dictionary construction.</strong> Motions are generated from random noises under null
+                prompts, and each noise is paired with the feature of the motion it produces.</li>
+              <li><strong>Retrieval.</strong> For a given text prompt, the best-aligned noise (a winning ticket) is
+                retrieved by cosine similarity in the feature space.</li>
+              <li><strong>Refinement.</strong> The retrieved noise is optimized to further improve text-motion
+                alignment, with a KL regularizer that preserves the Gaussian prior.</li>
+              <li><strong>(Optional) LoRA refiner.</strong> A lightweight adapter predicts the noise correction in a
+                single forward pass, enabling real-time use.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ░░░ END METHOD ░░░ -->
+
+
+  <!-- ░░░ INTERACTIVE RESULTS ░░░ -->
+  <section class="section" style="padding-top:1rem;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <h2 class="title is-3">Interactive Results</h2>
+          <p style="margin-bottom:1rem;color:#555;">
+            All results below are rendered as interactive 3D stick figures. Drag inside a viewer to rotate the
+            camera. The <span style="color:#e94560;font-weight:600;">red line</span> traces the root trajectory on
+            the ground.
+          </p>
+          <div class="winro-results-controls">
+            <button class="gc-btn" id="winro-sync-cam">Sync Cameras</button>
+            <button class="gc-btn" id="winro-reset-cam">Reset Cameras</button>
+            <span class="help-text">Drag = Rotate&ensp;|&ensp;Scroll = Zoom&ensp;|&ensp;Right-drag = Pan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Noise optimization -->
+  <section class="section" id="winro-sec-noise" style="padding-top:0.5rem;">
+    <div class="container is-max-desktop">
+      <h3 class="title is-4 has-text-centered">Text-to-Motion Generation</h3>
+      <p class="section-intro has-text-centered">
+        <strong>Random</strong> vs. <strong>retrieved</strong> vs. <strong>optimized</strong> initial noise, with the
+        same prompt and the same frozen diffusion model (MDM).
+      </p>
+      <div class="winro-tabs"></div>
+      <div class="winro-loading">Loading motion data&hellip;</div>
+      <div class="winro-panel-mount"></div>
+    </div>
+  </section>
+
+  <!-- Stylization -->
+  <section class="section" id="winro-sec-style">
+    <div class="container is-max-desktop">
+      <h3 class="title is-4 has-text-centered">Motion Stylization</h3>
+      <p class="section-intro has-text-centered">
+        Given a <span style="color:#24329e;font-weight:700;">style reference</span> motion, WINRO improves how
+        faithfully SMooDi transfers the style.
+      </p>
+      <div class="winro-tabs"></div>
+      <div class="winro-loading">Loading motion data&hellip;</div>
+      <div class="winro-panel-mount"></div>
+    </div>
+  </section>
+
+  <!-- Spatial constraints -->
+  <section class="section" id="winro-sec-spatial-pos">
+    <div class="container is-max-desktop">
+      <h3 class="title is-4 has-text-centered">Spatial Constraint</h3>
+      <p class="section-intro has-text-centered">
+        Combined with ProgMoGen, WINRO helps satisfy spatial goals such as reaching
+        <span style="color:#2979ff;font-weight:700;">target positions</span> and avoiding
+        <span style="color:#f44336;font-weight:700;">obstacles</span>, while keeping the motion natural.
+      </p>
+      <div class="winro-subsection">
+        <div class="subsection-head">
+          <h4 class="subsection-title">Position Constraint</h4>
+        </div>
+        <div class="winro-tabs"></div>
+        <div class="winro-loading">Loading motion data&hellip;</div>
+        <div class="winro-panel-mount"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="winro-sec-spatial-obs" style="padding-top:0;">
+    <div class="container is-max-desktop">
+      <div class="winro-subsection">
+        <div class="subsection-head">
+          <h4 class="subsection-title">Obstacle Avoidance</h4>
+        </div>
+        <div class="winro-tabs"></div>
+        <div class="winro-loading">Loading motion data&hellip;</div>
+        <div class="winro-panel-mount"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Temporal composition -->
+  <section class="section" id="winro-sec-mtt">
+    <div class="container is-max-desktop">
+      <h3 class="title is-4 has-text-centered">Temporal Composition (MTT)</h3>
+      <p class="section-intro has-text-centered">
+        Multiple text prompts are composed over time and body parts. The timeline below shows which sub-prompts are
+        active at each moment.
+      </p>
+      <div class="winro-tabs"></div>
+      <div class="winro-loading">Loading motion data&hellip;</div>
+      <div class="winro-panel-mount"></div>
+    </div>
+  </section>
+  <!-- ░░░ END INTERACTIVE RESULTS ░░░ -->
+
+
+  <!-- ░░░ BIBTEX ░░░ -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@inproceedings{ota2026winro,
+      title     = {Retrieving and Refining Winning Noise Tickets for Diffusion-Based Motion Generation},
+      author    = {Ota, Sakuya and Yu, Qing and Fujiwara, Kent and Ikehata, Satoshi and Sato, Ikuro},
+      booktitle = {European Conference on Computer Vision (ECCV)},
+      year      = {2026}
+      }</code></pre>
+    </div>
+  </section>
+  <!-- ░░░ END BIBTEX ░░░ -->
+
+
+  <!-- ░░░ FOOTER ░░░ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>
+              This page was built using the
+              <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic
+                Project Page Template</a>,
+              itself adapted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            </p>
+            <p style="font-size:12px;color:#999;">
+              Interactive viewer rendering: <a href="https://threejs.org/" target="_blank">Three.js</a> (MIT License,
+              three.js authors) with OrbitControls (Three.js examples, MIT License).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- ░░░ END FOOTER ░░░ -->
+
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      WINRO.init([
+        {
+          rootId: "winro-sec-noise",
+          dataKey: "noise",
+          src: "static/motions/noise.js",
+          tabLabel: function (g, i) {
+            return [
+              "Crawl to the left",
+              "Walk in a large curve",
+              "Acting like a tiger",
+              "Circle, right hand raised",
+              "Walk in an S shape",
+              "Pick up an object"
+            ][i] || ("Prompt " + (i + 1));
+          }
+        },
+        {
+          rootId: "winro-sec-style",
+          dataKey: "style",
+          src: "static/motions/style.js"
+        },
+        {
+          rootId: "winro-sec-spatial-pos",
+          dataKey: "spatial",
+          src: "static/motions/spatial.js",
+          groupIndex: 0,
+          showTitleAsPrompt: false
+        },
+        {
+          rootId: "winro-sec-spatial-obs",
+          dataKey: "spatial",
+          src: "static/motions/spatial.js",
+          groupIndex: 1,
+          showTitleAsPrompt: false
+        },
+        {
+          rootId: "winro-sec-mtt",
+          dataKey: "mtt",
+          src: "static/motions/mtt.js",
+          showTitleAsPrompt: false,
+          tabLabel: function (g) { return g.title; }
+        }
+      ]);
+    });
+  </script>
+
+</body>
+
+</html>
