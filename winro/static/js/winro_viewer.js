@@ -539,7 +539,8 @@ var WINRO = (function () {
   Panel.prototype._createViewers = function () {
     var motions = this.groupData.motions;
     var rowSize = this.groupData.rowSize || 0;
-    var cams = unifyCameraDistance(motions.map(computeCameraFromMotion));
+    this._cams = unifyCameraDistance(motions.map(computeCameraFromMotion));
+    this._containers = [];
     var self = this;
 
     motions.forEach(function (motion, idx) {
@@ -548,7 +549,6 @@ var WINRO = (function () {
 
       var nameLower = motion.name.toLowerCase();
       var isOurs = nameLower.indexOf("ours") >= 0 || nameLower.indexOf("optimized") >= 0;
-      var isStyleRef = nameLower.indexOf("style reference") >= 0;
       var col = document.createElement("div"); col.className = "viewer-column";
       var label = document.createElement("div"); label.className = "viewer-label" + (isOurs ? " ours" : "");
       label.textContent = motion.name;
@@ -571,8 +571,19 @@ var WINRO = (function () {
       }
       col.appendChild(cc);
       row.appendChild(col);
+      self._containers.push(cc);
+    });
 
-      var viewer = new SkeletonViewer(cc, motion, cams[idx], {
+    this._instantiateViewers();
+  };
+
+  // Create the WebGL viewers inside the (persistent) canvas containers.
+  // Called on first build and again when a suspended panel is resumed.
+  Panel.prototype._instantiateViewers = function () {
+    var self = this;
+    this.groupData.motions.forEach(function (motion, idx) {
+      var isStyleRef = motion.name.toLowerCase().indexOf("style reference") >= 0;
+      var viewer = new SkeletonViewer(self._containers[idx], motion, self._cams[idx], {
         parents: self.groupData.parents || self.dataInfo.parents,
         sphereRadius: self.dataInfo.sphereRadius,
         boneRadius: self.dataInfo.boneRadius,
@@ -598,7 +609,19 @@ var WINRO = (function () {
       });
     });
 
-    this.setFrame(0);
+    this.setFrame(this.currentFrame);
+  };
+
+  // Release the WebGL contexts but keep the panel DOM in place, so the
+  // page layout (and the scroll position) never changes.
+  Panel.prototype.suspend = function () {
+    this.viewers.forEach(function (v) { v.dispose(); });
+    this.viewers = [];
+  };
+
+  Panel.prototype.resume = function () {
+    if (this.viewers.length > 0) return;
+    this._instantiateViewers();
   };
 
   Panel.prototype.setFrame = function (idx) {
@@ -704,6 +727,14 @@ var WINRO = (function () {
   ResultSection.prototype.activate = async function () {
     if (this.active) return;
     this.active = true;
+
+    // A suspended panel keeps its DOM; just recreate its WebGL viewers.
+    if (this.panel) {
+      this.panel.resume();
+      if (WINRO.livePanels.indexOf(this.panel) < 0) WINRO.livePanels.push(this.panel);
+      return;
+    }
+
     var token = ++this._buildToken;
     var data;
     try {
@@ -730,8 +761,7 @@ var WINRO = (function () {
     if (this.panel) {
       var i = WINRO.livePanels.indexOf(this.panel);
       if (i >= 0) WINRO.livePanels.splice(i, 1);
-      this.panel.destroy();
-      this.panel = null;
+      this.panel.suspend();
     }
   };
 
