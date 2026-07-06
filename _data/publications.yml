@@ -8,6 +8,7 @@ index:
     venue: 'European Conference on Computer Vision (ECCV)'
     year: 2026
     website: '/winro/'
+    code: 'https://github.com/sinc865/WINRO'
     thumb: '/assets/img/thumb/winro_thumb.png'
 
   - id: pino2025
