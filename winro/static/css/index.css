@@ -20,7 +20,7 @@ body {
 
 /*────────────────  HERO & メタ情報  ────────────────*/
 h1.title.is-1.publication-title {
-    font-size: clamp(1.7rem, 4.8vw, 2.7rem);
+    font-size: 2.8rem;
 }
 
 /* 改行位置の固定は改行が効く広さがあるときだけ */
@@ -67,6 +67,15 @@ section figcaption {
     margin-top: .4rem;
     text-align: center;
     color: #555;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Placeholder paper/code buttons look inactive until real links are set */
+.publication-links a[href="#"] {
+    opacity: 0.65;
+    pointer-events: none;
 }
 
 .method-figure {
@@ -196,29 +205,18 @@ section figcaption {
     padding: 30px 0;
 }
 
-/* Comparison panel: prompt shown as a labeled pill */
+/* Comparison panel: prompt shown in a subtle box */
 .comp-prompt {
     display: table;
     margin: 0 auto 14px;
     padding: 7px 18px;
     background: #fafafa;
     border: 1px solid #e8e8e8;
-    border-radius: 999px;
+    border-radius: 6px;
     text-align: center;
     font-size: 15px;
     color: #444;
     font-style: italic;
-}
-
-.comp-prompt::before {
-    content: "Prompt";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #1a73e8;
-    margin-right: 10px;
 }
 
 .highlight {
@@ -615,8 +613,10 @@ section figcaption {
         align-items: center;
     }
 
+    /* Leave side gutters so the page can be scrolled without
+       grabbing a viewer canvas */
     .viewer-column {
-        max-width: 420px;
-        width: 100%;
+        max-width: 340px;
+        width: 86%;
     }
 }
