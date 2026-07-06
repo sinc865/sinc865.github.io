@@ -205,18 +205,15 @@ section figcaption {
     padding: 30px 0;
 }
 
-/* Comparison panel: prompt shown in a subtle box */
+/* Comparison panel: prompt as plain centered text (same as the
+   supplementary viewer) */
 .comp-prompt {
-    display: table;
-    margin: 0 auto 14px;
-    padding: 7px 18px;
-    background: #fafafa;
-    border: 1px solid #e8e8e8;
-    border-radius: 6px;
     text-align: center;
     font-size: 15px;
-    color: #444;
+    color: #555;
     font-style: italic;
+    margin-bottom: 12px;
+    min-height: 18px;
 }
 
 .highlight {
