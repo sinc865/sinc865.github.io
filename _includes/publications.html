@@ -54,3 +54,22 @@
     </ul>
   </div>
 </div>
+
+{% if site.data.publications.reviewer %}
+<div class="row g-5 mb-5">
+  <div>
+    <h3 class="border-bottom pb-3 mb-4">Reviewer</h3>
+
+    <ul class="list-unstyled publication-list">
+      {% for r in site.data.publications.reviewer %}
+      <li class="d-flex mb-4">
+        <div>
+          <strong>{{ r.venue }} {{ r.year }}</strong>
+          {% if r.award %} <span class="text-danger fw-semibold">{{ r.award }}</span>{% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}

@@ -80,11 +80,11 @@
             <!-- Links -->
             <div class="column has-text-centered">
               <div class="publication-links">
-                <!-- TODO: replace href with the arXiv / paper link when available -->
                 <span class="link-block">
-                  <a href="#" class="external-link button is-normal is-rounded is-dark" title="Coming soon">
+                  <a href="https://arxiv.org/abs/2607.06843" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                    <span>Paper (coming soon)</span>
+                    <span>Paper</span>
                   </a>
                 </span>
 
@@ -243,10 +243,6 @@
   <section class="section" id="winro-sec-style">
     <div class="container is-max-desktop">
       <h3 class="title is-4 has-text-centered">Motion Stylization</h3>
-      <p class="section-intro has-text-centered">
-        Given a <span style="color:#24329e;font-weight:700;">style reference</span> motion, WINRO improves how
-        faithfully SMooDi transfers the style.
-      </p>
       <div class="winro-tabs"></div>
       <div class="winro-loading">Loading motion data&hellip;</div>
       <div class="winro-panel-mount"></div>
@@ -257,11 +253,6 @@
   <section class="section" id="winro-sec-spatial-pos">
     <div class="container is-max-desktop">
       <h3 class="title is-4 has-text-centered">Spatial Constraint</h3>
-      <p class="section-intro has-text-centered">
-        Combined with ProgMoGen, WINRO helps satisfy spatial goals such as reaching
-        <span style="color:#2979ff;font-weight:700;">target positions</span> and avoiding
-        <span style="color:#f44336;font-weight:700;">obstacles</span>, while keeping the motion natural.
-      </p>
       <div class="winro-subsection">
         <div class="subsection-head">
           <h4 class="subsection-title">Position Constraint</h4>
@@ -290,10 +281,6 @@
   <section class="section" id="winro-sec-mtt">
     <div class="container is-max-desktop">
       <h3 class="title is-4 has-text-centered">Temporal Composition (MTT)</h3>
-      <p class="section-intro has-text-centered">
-        Multiple text prompts are composed over time and body parts. The timeline below shows which sub-prompts are
-        active at each moment.
-      </p>
       <div class="winro-tabs"></div>
       <div class="winro-loading">Loading motion data&hellip;</div>
       <div class="winro-panel-mount"></div>
@@ -347,13 +334,14 @@
           rootId: "winro-sec-noise",
           dataKey: "noise",
           src: "static/motions/noise.js",
+          groupOrder: [4, 0, 1, 2, 3, 5],
           tabLabel: function (g, i) {
             return [
+              "Walk in an S shape",
               "Crawl to the left",
               "Walk in a large curve",
               "Acting like a tiger",
               "Circle, right hand raised",
-              "Walk in an S shape",
               "Pick up an object"
             ][i] || ("Prompt " + (i + 1));
           }

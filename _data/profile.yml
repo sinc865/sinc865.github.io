@@ -10,15 +10,15 @@ image: "assets/img/home.jpg"
 
 # 所属情報
 affiliation:
-  position: "M.S. Student"
-  lab: "Sato Laboratory"
-  department: "Department of Computer Science, School of Computing"
-  institution: "Institute of Science Tokyo"
+  position: "Engineer"
+  lab: ""
+  department: ""
+  institution: "LY Corporation"
   # lab_url: "https://example.com/lab"  # ラボのURLがあれば
 
 # 自己紹介文（Markdown対応）
 bio: |
-  I am an M.S. student at the Sato Laboratory in the Department of Computer Science, School of Computing, Institute of Science Tokyo. My research interests include computer vision.
+  I am an engineer at LY Corporation. Previously, I was an M.S. student at the Sato Laboratory, Institute of Science Tokyo, where I worked on computer vision, human motion generation, and diffusion models.
 
 # 研究興味（表示する場合はコメント解除）
 # interests:

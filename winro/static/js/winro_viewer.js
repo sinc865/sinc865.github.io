@@ -712,7 +712,7 @@ var WINRO = (function () {
   // ResultSection: tab bar + one live panel, lazily built/destroyed
   // ------------------------------------------------------------
   function ResultSection(config) {
-    this.config = config;      // {rootId, dataKey, src, tabLabel(group,i), showTitleAsPrompt}
+    this.config = config;      // {rootId, dataKey, src, tabLabel(group,i), showTitleAsPrompt, groupOrder}
     this.root = document.getElementById(config.rootId);
     this.tabsEl = this.root.querySelector(".winro-tabs");
     this.panelMount = this.root.querySelector(".winro-panel-mount");
@@ -747,6 +747,20 @@ var WINRO = (function () {
     if (!this.active || token !== this._buildToken) return;
     if (this.config.groupIndex !== undefined) {
       data = Object.assign({}, data, { groups: [data.groups[this.config.groupIndex]] });
+    }
+    if (this.config.groupOrder) {
+      var seen = {};
+      var groups = [];
+      this.config.groupOrder.forEach(function (groupIndex) {
+        if (data.groups[groupIndex]) {
+          seen[groupIndex] = true;
+          groups.push(data.groups[groupIndex]);
+        }
+      });
+      data.groups.forEach(function (group, groupIndex) {
+        if (!seen[groupIndex]) groups.push(group);
+      });
+      data = Object.assign({}, data, { groups: groups });
     }
     this.data = data;
     this.dataInfo = dataInfoFor(data);
